@@ -100,6 +100,7 @@ class Register : Fragment() {
 
 
 
+
             fieldPassword.transformationMethod = PasswordTransformationMethod()
             fieldConfirmpassword.transformationMethod = PasswordTransformationMethod()
 
@@ -131,7 +132,7 @@ class Register : Fragment() {
     private fun retrievePreferences() : ArrayAdapter<String>{
         return ArrayAdapter(
             this@Register.requireContext(),
-            android.R.layout.simple_spinner_item,
+            android.R.layout.simple_list_item_1,
             arrayOf("Opcion 1","Opcion 2","Opcion 3","Opcion 4")
         )
 

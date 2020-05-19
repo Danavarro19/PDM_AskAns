@@ -71,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:layout_weight="2"
+                    android:checked="true"
                     android:text="@string/radiopt_masculino" />
 
                 <RadioButton
@@ -106,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/field_document"
                 android:layout_marginTop="@dimen/margin_wide"
-                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_wide"
                 android:layout_marginBottom="@dimen/margin_wide"
                 android:hint="@string/country"
                 android:textAlignment="center"
@@ -117,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/field_document"
-                android:layout_marginTop="@dimen/margin_wide"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_marginBottom="@dimen/margin_wide"
                 android:layout_toEndOf="@id/field_country"
                 app:ccpDialog_showNameCode="false"
@@ -165,12 +166,18 @@
                 android:layout_below="@id/field_confirmpassword"
                 android:layout_marginTop="@dimen/margin_medium" />
 
+            <ListView
+                android:layout_below="@+id/spinner_preferences"
+                android:id="@+id/list_preferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 
             <Button
                 android:id="@+id/button_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spinner_preferences"
+                android:layout_below="@id/list_preferences"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:text="@string/register" />
@@ -179,7 +186,7 @@
                 android:id="@+id/button_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spinner_preferences"
+                android:layout_below="@id/list_preferences"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:layout_toStartOf="@+id/button_register"
                 android:text="@string/cancelar" />
