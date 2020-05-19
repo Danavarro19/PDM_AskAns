@@ -19,12 +19,14 @@ import com.google.gson.Gson
 class FrontPage : Fragment() {
 
     data class UserToSign(val email : String, val password: String)
+    private lateinit var binding : FragmentFrontPageBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentFrontPageBinding>(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_front_page,container,false )
 
         binding.apply {

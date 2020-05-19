@@ -12,10 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.dnavarro.askanswerviews.databinding.FragmentRegisterBinding
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
 /**
@@ -35,8 +37,7 @@ class Register : Fragment() {
         val password : String,
         val preferences : List<String>
     )
-
-    lateinit var binding : FragmentRegisterBinding
+    private lateinit var binding : FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +48,7 @@ class Register : Fragment() {
         )
 
         binding.apply {
+
             fieldBirthdate.setOnClickListener{
                 showDateDialog()
             }
@@ -62,9 +64,9 @@ class Register : Fragment() {
                     fieldName.text.toString(),
                     fieldLastname.text.toString(),
                     fieldBirthdate.text.toString(),
-                    "Sex",
+                    getSex(fieldSex.checkedRadioButtonId)?.text.toString(),
                     fieldDocument.text.toString(),
-                    "country",
+                    pickerCountry.selectedCountryName,
                     fieldCity.text.toString(),
                     fieldEmail.text.toString(),
                     fieldPassword.text.toString(),
@@ -79,6 +81,8 @@ class Register : Fragment() {
                         .actionRegisterToFrontPage())
 
             }
+
+
 
             spinnerPreferences.adapter = retrievePreferences()
             spinnerPreferences.onItemSelectedListener = object :
@@ -104,11 +108,10 @@ class Register : Fragment() {
         return binding.root
     }
 
-    fun showDateDialog(){
+    private fun showDateDialog(){
 
         val mDateListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            val dateOfBirth = "${day}/${month+1}/${year}"
-            binding.fieldBirthdate.text = dateOfBirth
+            binding.fieldBirthdate.text = "${day}/${month+1}/${year}"
         }
 
         val cal = Calendar.getInstance()
@@ -125,13 +128,21 @@ class Register : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
-    fun retrievePreferences() : ArrayAdapter<String>{
+    private fun retrievePreferences() : ArrayAdapter<String>{
         return ArrayAdapter(
             this@Register.requireContext(),
             android.R.layout.simple_spinner_item,
             arrayOf("Opcion 1","Opcion 2","Opcion 3","Opcion 4")
         )
 
+    }
+    private fun getSex(id : Int) : RadioButton? {
+        return when (id) {
+            R.id.radiopt_m -> radiopt_m
+            R.id.radiopt_f -> radiopt_f
+            R.id.radiopt_otro -> radiopt_otro
+            else -> null
+        }
     }
 
 }
