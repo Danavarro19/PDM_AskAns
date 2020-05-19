@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/frontPage">
+
+    <fragment
+        android:id="@+id/frontPage"
+        android:name="com.dnavarro.askanswerviews.FrontPage"
+        android:label="fragment_front_page"
+        tools:layout="@layout/fragment_front_page" >
+        <action
+            android:id="@+id/action_frontPage_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.dnavarro.askanswerviews.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_frontPage"
+            app:destination="@id/frontPage"
+            app:popUpTo="@id/frontPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

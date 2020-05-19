@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FrontPage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_xwide"
+        >
+
+        <TextView
+            android:id="@+id/title_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/field_email"
+            android:layout_marginBottom="@dimen/margin_xwide"
+            android:textSize="@dimen/text_large"
+            android:text="@string/login"
+            />
+
+        <EditText
+            android:id="@+id/field_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:layout_above="@+id/field_password"
+            />
+
+        <EditText
+            android:layout_centerVertical="true"
+            android:id="@+id/field_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:layout_marginBottom="@dimen/margin_wide"/>
+
+        <Button
+            android:id="@+id/button_signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_below="@+id/field_password"/>
+
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:text="@string/register"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/button_signin"
+            android:layout_below="@+id/field_password"/>
+
+
+    </RelativeLayout>
+</layout>
+
+
+
