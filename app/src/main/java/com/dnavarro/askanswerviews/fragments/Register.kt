@@ -1,4 +1,4 @@
-package com.dnavarro.askanswerviews
+package com.dnavarro.askanswerviews.fragments
 
 import android.app.DatePickerDialog
 import android.graphics.Color
@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentRegisterBinding
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -44,7 +45,8 @@ class Register : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_register, container, false
+            inflater,
+            R.layout.fragment_register, container, false
         )
 
         binding.apply {
@@ -60,18 +62,19 @@ class Register : Fragment() {
             }
 
             buttonRegister.setOnClickListener { view : View ->
-                val user = UserToRegister(
-                    fieldName.text.toString(),
-                    fieldLastname.text.toString(),
-                    fieldBirthdate.text.toString(),
-                    getSex(fieldSex.checkedRadioButtonId)?.text.toString(),
-                    fieldDocument.text.toString(),
-                    pickerCountry.selectedCountryName,
-                    fieldCity.text.toString(),
-                    fieldEmail.text.toString(),
-                    fieldPassword.text.toString(),
-                    listOf()
-                )
+                val user =
+                    UserToRegister(
+                        fieldName.text.toString(),
+                        fieldLastname.text.toString(),
+                        fieldBirthdate.text.toString(),
+                        getSex(fieldSex.checkedRadioButtonId)?.text.toString(),
+                        fieldDocument.text.toString(),
+                        pickerCountry.selectedCountryName,
+                        fieldCity.text.toString(),
+                        fieldEmail.text.toString(),
+                        fieldPassword.text.toString(),
+                        listOf()
+                    )
                 val gson = Gson()
                 val jsonUser = gson.toJson(user)
                 Log.d("Register", jsonUser)

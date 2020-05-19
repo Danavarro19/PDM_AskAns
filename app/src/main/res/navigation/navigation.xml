@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/frontPage"
-        android:name="com.dnavarro.askanswerviews.FrontPage"
+        android:name="com.dnavarro.askanswerviews.fragments.FrontPage"
         android:label="fragment_front_page"
         tools:layout="@layout/fragment_front_page" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.dnavarro.askanswerviews.Register"
+        android:name="com.dnavarro.askanswerviews.fragments.Register"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action

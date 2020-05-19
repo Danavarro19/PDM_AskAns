@@ -1,4 +1,4 @@
-package com.dnavarro.askanswerviews
+package com.dnavarro.askanswerviews.utils
 
 class FormHandler() {
 
