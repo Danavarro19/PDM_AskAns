@@ -57,31 +57,11 @@ class Register : Fragment() {
 
             buttonCancel.setOnClickListener {view: View ->
                 view.findNavController()
-                    .navigate(RegisterDirections
-                        .actionRegisterToFrontPage())
+                    .navigate(R.id.action_register_to_frontPage)
             }
 
             buttonRegister.setOnClickListener { view : View ->
-                val user =
-                    UserToRegister(
-                        fieldName.text.toString(),
-                        fieldLastname.text.toString(),
-                        fieldBirthdate.text.toString(),
-                        getSex(fieldSex.checkedRadioButtonId)?.text.toString(),
-                        fieldDocument.text.toString(),
-                        pickerCountry.selectedCountryName,
-                        fieldCity.text.toString(),
-                        fieldEmail.text.toString(),
-                        fieldPassword.text.toString(),
-                        listOf()
-                    )
-                val gson = Gson()
-                val jsonUser = gson.toJson(user)
-                Log.d("Register", jsonUser)
-
-                view.findNavController()
-                    .navigate(RegisterDirections
-                        .actionRegisterToFrontPage())
+                //hace falta impplementar
 
             }
 

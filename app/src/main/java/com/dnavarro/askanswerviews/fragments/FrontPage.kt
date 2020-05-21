@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentFrontPageBinding
+import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.gson.Gson
 
 /**
@@ -18,37 +21,45 @@ import com.google.gson.Gson
  */
 class FrontPage : Fragment() {
 
-    data class UserToSign(val email : String, val password: String)
-    private lateinit var binding : FragmentFrontPageBinding
+    private val userModel: Userviewmodel by lazy { ViewModelProvider(this).get(Userviewmodel::class.java)
+    }
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
+        val binding = DataBindingUtil.inflate<FragmentFrontPageBinding>(
             inflater,
             R.layout.fragment_front_page,container,false )
 
+        binding.userModel = userModel
+        binding.lifecycleOwner = this
+        userModel.pass.observe(this.viewLifecycleOwner, Observer {
+            if(it){
+                println("se logueo")
+//                definir navigation con logueo correcto
+            }else{
+                userModel.changeMessage("Datos incorrectos")
+                println("no se pudo loguear")
+            }
+        })
         binding.apply {
 
             fieldPassword.transformationMethod = PasswordTransformationMethod()
 
             buttonSignin.setOnClickListener{
-                val user =
-                    UserToSign(
-                        fieldEmail.text.toString(),
-                        fieldPassword.text.toString()
-                    )
-                val gson = Gson()
-                val jsonUser = gson.toJson(user)
-                Log.d("FrontPage", jsonUser)
+                userModel!!.changePassword(fieldPassword.text.toString())
+                userModel!!.changeUsername(fieldEmail.text.toString())
+
+               userModel!!.checkPassword()
+
             }
 
 
             buttonRegister.setOnClickListener { view: View ->
-                view.findNavController()
-                    .navigate(FrontPageDirections.actionFrontPageToRegister())
+                view.findNavController().navigate(R.id.action_frontPage_to_register)
             }
         }
 
