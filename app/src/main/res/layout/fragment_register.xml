@@ -140,6 +140,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_city"
+                android:layout_marginTop="34dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:hint="@string/email" />
+
+            <EditText
+                android:id="@+id/field_altura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_city"
+                android:layout_marginTop="63dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:hint="@string/email" />
+
+            <EditText
+                android:id="@+id/field_peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_city"
+                android:layout_marginTop="-59dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/email" />
 
@@ -147,7 +166,8 @@
                 android:id="@+id/field_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/field_email"
+                android:layout_below="@+id/field_peso"
+                android:layout_marginTop="-14dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/password" />
 
@@ -156,6 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_password"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/field_confirmpassword" />
 
