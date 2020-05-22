@@ -61,6 +61,7 @@ class Register : Fragment() {
             }
 
             buttonRegister.setOnClickListener { view : View ->
+                view.findNavController().navigate(R.id.action_register_to_fragment_home)
                 //hace falta impplementar
 
             }
