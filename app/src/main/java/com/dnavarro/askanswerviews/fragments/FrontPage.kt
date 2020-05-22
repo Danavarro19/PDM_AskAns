@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentFrontPageBinding
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
@@ -39,9 +40,7 @@ class FrontPage : Fragment() {
         userModel.pass.observe(this.viewLifecycleOwner, Observer {
             if(it){
                 println("se logueo")
-                    binding.buttonSignin.setOnClickListener { view: View ->
-                        view.findNavController().navigate(R.id.action_frontPage_to_fragment_home)
-                    }
+                this.findNavController().navigate(R.id.action_frontPage_to_fragment_home)
 //                definir navigation con logueo correcto
             }else{
                 userModel.changeMessage("Datos incorrectos")
