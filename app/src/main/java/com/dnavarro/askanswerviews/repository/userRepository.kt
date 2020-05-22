@@ -15,12 +15,8 @@ import com.dnavarro.askanswerviews.entity.loginResponse
 class UserRepository {
     private val _pass = MutableLiveData<Boolean>()
     val  pass: LiveData<Boolean> get() =  _pass
-
-    init {
-        //implementar cookie session
+    init { //implementar cookie session
     }
-
-
     fun Login(mail: String, password: String){
         var result: Boolean = false
         val request = serviceLoginResponse.buildService(loginInterface::class.java)
@@ -40,7 +36,6 @@ class UserRepository {
                 }
 
             }
-
             override fun onFailure(call: Call<loginResponse>, t: Throwable) {
                 println(t.message)
                 result = false
