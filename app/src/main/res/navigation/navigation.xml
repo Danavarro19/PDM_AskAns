@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_frontPage_to_register"
             app:destination="@id/register" />
+        <action
+            android:id="@+id/action_frontPage_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -24,5 +27,13 @@
             app:destination="@id/frontPage"
             app:popUpTo="@id/frontPage"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_register_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.dnavarro.askanswerviews.fragments.Fragment_home"
+        android:label="Fragment_home"
+        tools:layout="@layout/fragment_home"/>
 </navigation>

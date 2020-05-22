@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ask&amp;AnswerViews</string>
+    <string name="app_name">Ask&amp;Answer</string>
 
     <string name="login">ingresar</string>
     <string name="password">contraseña</string>
@@ -20,4 +20,14 @@
     <string name="field_birthdate">fecha de nacimiento</string>
     <string name="field_confirmpassword">confirme contraseña</string>
     <string name="cancelar">cancelar</string>
+
+    <string name="cuenta">Cuenta</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="pagos">Pagos</string>
+    <string name="carrito">Carrito</string>
+    <string name="saldo_ganado">Saldo ganado</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="crear_encuesta">Crear encuesta</string>
 </resources>

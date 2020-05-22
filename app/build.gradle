@@ -40,6 +40,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
+    implementation "androidx.appcompat:appcompat:$supportlibVersion"
+    implementation "com.google.android.material:material:$supportlibVersion"
+
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

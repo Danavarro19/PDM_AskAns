@@ -39,6 +39,9 @@ class FrontPage : Fragment() {
         userModel.pass.observe(this.viewLifecycleOwner, Observer {
             if(it){
                 println("se logueo")
+                    binding.buttonSignin.setOnClickListener { view: View ->
+                        view.findNavController().navigate(R.id.action_frontPage_to_fragment_home)
+                    }
 //                definir navigation con logueo correcto
             }else{
                 userModel.changeMessage("Datos incorrectos")
