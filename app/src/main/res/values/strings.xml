@@ -7,7 +7,10 @@
     <string name="no_account">No tienes cuenta?</string>
     <string name="register">Registrarse</string>
 
+    <string name="tag">Gustos</string>
+    <string name="peso">Peso</string>
     <string name="altura">Altura</string>
+
     <string name="name">Nombres</string>
     <string name="last_name">Apellidos</string>
     <string name="document">Documento</string>

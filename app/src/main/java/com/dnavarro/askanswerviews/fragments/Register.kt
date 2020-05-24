@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,10 +15,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentRegisterBinding
+import com.dnavarro.askanswerviews.viewmodels.RegisterViewModel
+import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
@@ -26,18 +32,9 @@ import java.util.*
  */
 class Register : Fragment() {
 
-    data class UserToRegister(
-        val name : String,
-        val lastName : String,
-        val birthDate : String,
-        val sex : String,
-        val document : String,
-        val country : String,
-        val city : String,
-        val email : String,
-        val password : String,
-        val preferences : List<String>
-    )
+    private val registerModel: RegisterViewModel by lazy { ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
+
     private lateinit var binding : FragmentRegisterBinding
 
     override fun onCreateView(
@@ -48,8 +45,28 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
-
+    binding.registerModel = registerModel
         binding.apply {
+
+            fieldName.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel.updateName(p0)
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldLastname.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel.updateLastname()p0)
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
 
             fieldBirthdate.setOnClickListener{
                 showDateDialog()
@@ -68,18 +85,9 @@ class Register : Fragment() {
 
 
 
-            spinnerPreferences.adapter = retrievePreferences()
-            spinnerPreferences.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    //
-                }
 
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    //
-                }
 
-            }
+
 
 
 
@@ -113,21 +121,7 @@ class Register : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
-    private fun retrievePreferences() : ArrayAdapter<String>{
-        return ArrayAdapter(
-            this@Register.requireContext(),
-            android.R.layout.simple_list_item_1,
-            arrayOf("Opcion 1","Opcion 2","Opcion 3","Opcion 4")
-        )
 
-    }
-    private fun getSex(id : Int) : RadioButton? {
-        return when (id) {
-            R.id.radiopt_m -> radiopt_m
-            R.id.radiopt_f -> radiopt_f
-            R.id.radiopt_otro -> radiopt_otro
-            else -> null
-        }
-    }
+
 
 }
