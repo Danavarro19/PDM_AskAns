@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navHeader"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="@dimen/tamañoNavHeader"
     android:background="@color/colorLogo"
     android:padding="@dimen/margin_wide"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
         android:id="@+id/logo_lateral"
-        android:layout_width="266dp"
-        android:layout_height="72dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="255dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="@dimen/marginLatImage"
         android:background="@color/colorLogo"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"

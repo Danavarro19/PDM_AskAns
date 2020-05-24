@@ -6,6 +6,14 @@
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="text_medium">16sp</dimen>
 
-    <dimen name="marginLogo">90dp</dimen>
-    <dimen name="marginMenuLat">131dp</dimen>
+    <!--Nav header-->
+    <dimen name="tamañoNavHeader">100dp</dimen>
+    <dimen name="marginLatImage">35dp</dimen>
+    <dimen name="marginImage">360dp</dimen>
+    <!--ImagenLateral-->
+    <dimen name="marginLogo">35dp</dimen>
+
+    <dimen name="marginMenuLat">100dp</dimen>
+
+    <!--Imagen en crear encuesta-->
 </resources>
