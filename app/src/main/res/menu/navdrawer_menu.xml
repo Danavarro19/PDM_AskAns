@@ -20,4 +20,20 @@
             android:title="@string/saldo_ganado" />
     </group>
 
+    <item android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/cerrarSesion"
+                android:title="@string/cerrarSesion" />
+            <item
+                android:id="@+id/ayuda"
+                android:title="@string/ayuda"/>
+            <item
+                android:id="@+id/acercaDe"
+                android:title="@string/acercaDe"/>
+
+        </menu>
+    </item>
+
 </menu>
