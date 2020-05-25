@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.dnavarro.askanswerviews.R
@@ -24,6 +25,7 @@ import com.dnavarro.askanswerviews.databinding.FragmentRegisterBinding
 import com.dnavarro.askanswerviews.viewmodels.RegisterViewModel
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
@@ -45,12 +47,13 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
+
     binding.registerModel = registerModel
         binding.apply {
 
             fieldName.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
-                    registerModel.updateName(p0)
+                    registerModel!!.updateName(p0.toString())
                 }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -60,7 +63,7 @@ class Register : Fragment() {
 
             fieldLastname.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
-                    registerModel.updateLastname()p0)
+                    registerModel!!.updateLastname(p0.toString())
                 }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -78,7 +81,7 @@ class Register : Fragment() {
             }
 
             buttonRegister.setOnClickListener { view : View ->
-                view.findNavController().navigate(R.id.action_register_to_fragment_home)
+//                view.findNavController().navigate(R.id.action_register_to_fragment_home)
                 //hace falta impplementar
 
             }

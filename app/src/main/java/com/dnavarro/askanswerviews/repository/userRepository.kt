@@ -16,6 +16,7 @@ class UserRepository {
     private val _pass = MutableLiveData<Boolean>()
     val  pass: LiveData<Boolean> get() =  _pass
     init { //implementar cookie session
+        _pass.value = false
     }
     fun Login(mail: String, password: String){
         var result: Boolean = false

@@ -13,23 +13,18 @@
         <action
             android:id="@+id/action_frontPage_to_register"
             app:destination="@id/register" />
-        <action
-            android:id="@+id/action_frontPage_to_fragment_home"
-            app:destination="@id/fragment_home" />
     </fragment>
     <fragment
         android:id="@+id/register"
         android:name="com.dnavarro.askanswerviews.fragments.Register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register"
+       >
         <action
             android:id="@+id/action_register_to_frontPage"
             app:destination="@id/frontPage"
             app:popUpTo="@id/frontPage"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_register_to_fragment_home"
-            app:destination="@id/fragment_home" />
     </fragment>
     <fragment
         android:id="@+id/fragment_home"

@@ -31,8 +31,8 @@ class RegisterViewModel: ViewModel() {
     val tags: LiveData<String> get() = _tags
     private val _altura = MutableLiveData<Float>()
     val altura: LiveData<Float> get() = _altura
-    private val _peso = MutableLiveData<String>()
-    val peso: LiveData<String> get() = _peso
+    private val _peso = MutableLiveData<Float>()
+    val peso: LiveData<Float> get() = _peso
 
     fun updateName(name: String){
         _name.value = name
@@ -40,6 +40,43 @@ class RegisterViewModel: ViewModel() {
     fun updateLastname(lastname: String){
         _lastname.value = lastname
     }
+
+    fun updatebirthDate(fecha: String){
+        _birtDate.value = fecha
+    }
+
+    fun updateSex(sex: String){
+        _sex.value = sex
+    }
+
+    fun updateDocument(doc: String){
+        _document.value = doc
+    }
+
+    fun updateCountry(pais: String){
+        _country.value = pais
+    }
+
+    fun updateCity(city: String){
+        _city.value = city
+    }
+
+    fun updateEmail(mail: String){
+        _email.value = mail
+    }
+
+    fun updatePassword(pass: String){
+        _password.value = pass
+    }
+
+    fun updateAltura(altura: Float){
+        _altura.value = altura
+    }
+
+    fun updatePeso(peso: Float){
+        _peso.value = peso
+    }
+
 
 
 

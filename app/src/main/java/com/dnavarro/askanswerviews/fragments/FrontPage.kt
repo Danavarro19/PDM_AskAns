@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -16,14 +18,14 @@ import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentFrontPageBinding
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class FrontPage : Fragment() {
 
-    private val userModel: Userviewmodel by lazy { ViewModelProvider(this).get(Userviewmodel::class.java)
-    }
+    private val userModel: Userviewmodel by activityViewModels()
 
 
 
@@ -35,12 +37,13 @@ class FrontPage : Fragment() {
             inflater,
             R.layout.fragment_front_page,container,false )
 
+
         binding.userModel = userModel
         binding.lifecycleOwner = this
         userModel.pass.observe(this.viewLifecycleOwner, Observer {
             if(it){
                 println("se logueo")
-                this.findNavController().navigate(R.id.action_frontPage_to_fragment_home)
+                this.findNavController().navigate(R.id.fragment_home)
 //                definir navigation con logueo correcto
             }else{
                 userModel.changeMessage("Datos incorrectos")
