@@ -11,7 +11,7 @@ package com.dnavarro.askanswerviews.entity
         val city : String,
         val email : String,
         val password : String,
-        val tags : List<String>,
+        val tags : MutableCollection<String>,
         val altura: Float,
         val peso: Float
     )

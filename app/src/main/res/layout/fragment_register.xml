@@ -226,19 +226,20 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_marginTop="24dp"
-
-                android:id="@+id/list_preferences"
+                app:List="@{RegisterModel.tags}"
+                android:id="@+id/list_tags"
                 style="@style/Widget.MaterialComponents.Chip.Entry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lineaAdd"
+
                 />
 
             <Button
                 android:id="@+id/button_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/list_preferences"
+                android:layout_below="@id/list_tags"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:text="@string/register" />
@@ -247,7 +248,7 @@
                 android:id="@+id/button_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/list_preferences"
+                android:layout_below="@id/list_tags"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:layout_toStartOf="@+id/button_register"
                 android:text="@string/cancelar" />
