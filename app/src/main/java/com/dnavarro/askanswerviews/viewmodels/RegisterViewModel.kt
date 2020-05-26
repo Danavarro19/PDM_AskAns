@@ -118,12 +118,14 @@ class RegisterViewModel: ViewModel() {
     }
 
     fun addTag(tag: String){
+        println("tag:" + tag)
         if (!_tags.value!!.contains(tag)){
             _tags!!.value!!.add(tag)
         }
     }
 
     fun removeFromTag(tag: String){
+        println("delete tag:" + tag)
         _tags.value!!.remove(tag)
     }
 

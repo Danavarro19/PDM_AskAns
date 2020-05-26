@@ -155,12 +155,12 @@ class Register : Fragment() {
             })
 
             //aqui!!
-            add_chip_btn.setOnClickListener(View.OnClickListener {
+            addChipBtn.setOnClickListener(View.OnClickListener {
                 registerModel!!.addTag(add_chip.text.toString())
                 add_chip.setText("")
             })
             //aqui!!
-            list_tags.setOnCheckedChangeListener(ChipGroup.OnCheckedChangeListener { group, checkedId ->
+            listTags.setOnCheckedChangeListener(ChipGroup.OnCheckedChangeListener { group, checkedId ->
                 var chip: Chip = group.getChildAt(checkedId) as Chip
                 registerModel!!.removeFromTag(chip.text.toString())
             })

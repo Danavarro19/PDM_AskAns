@@ -233,7 +233,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lineaAdd"
 
-                />
+                >
+
+
+
+            </com.google.android.material.chip.ChipGroup>
 
             <Button
                 android:id="@+id/button_register"
