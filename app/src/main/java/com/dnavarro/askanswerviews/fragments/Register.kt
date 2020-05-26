@@ -148,21 +148,21 @@ class Register : Fragment() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
             })
-
+            //aqui!!
             fieldSex.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 var radio: RadioButton = group.getChildAt(checkedId) as RadioButton
-                registerModel.updateSex(radio.text.toString())
+                registerModel!!.updateSex(radio.text.toString())
             })
 
-
+            //aqui!!
             add_chip_btn.setOnClickListener(View.OnClickListener {
-                registerModel.addTag(add_chip.text.toString())
+                registerModel!!.addTag(add_chip.text.toString())
                 add_chip.setText("")
             })
-
+            //aqui!!
             list_tags.setOnCheckedChangeListener(ChipGroup.OnCheckedChangeListener { group, checkedId ->
                 var chip: Chip = group.getChildAt(checkedId) as Chip
-                registerModel.removeFromTag(chip.text.toString())
+                registerModel!!.removeFromTag(chip.text.toString())
             })
 
 
@@ -171,11 +171,11 @@ class Register : Fragment() {
                 view.findNavController()
                     .navigate(R.id.action_register_to_frontPage)
             }
-
+            //aqui!!
             buttonRegister.setOnClickListener { view : View ->
 //                view.findNavController().navigate(R.id.action_register_to_fragment_home)
                 //hace falta impplementar
-                registerModel.register()
+                registerModel!!.register()
             }
 
 
