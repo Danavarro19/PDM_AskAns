@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull
 
 class RegisterViewModel: ViewModel() {
     private val userRepo = UserRepository()
-    val register = userRepo.register
+    val registerc: LiveData<Boolean> = userRepo.register
     private val _name = MutableLiveData<String>()
 
     val name: LiveData<String> get() = _name

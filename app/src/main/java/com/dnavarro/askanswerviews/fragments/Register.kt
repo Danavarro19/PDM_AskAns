@@ -52,7 +52,7 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
-        registerModel.register.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
+        registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
                 this.findNavController().navigate(R.id.fragment_home)
             }else{
@@ -175,7 +175,7 @@ class Register : Fragment() {
             buttonRegister.setOnClickListener { view : View ->
 //                view.findNavController().navigate(R.id.action_register_to_fragment_home)
                 //hace falta impplementar
-
+                registerModel.register()
             }
 
 
