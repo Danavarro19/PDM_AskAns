@@ -4,6 +4,9 @@ import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,11 +16,22 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.RadioGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentRegisterBinding
+import com.dnavarro.askanswerviews.viewmodels.RegisterViewModel
+import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
@@ -26,18 +40,8 @@ import java.util.*
  */
 class Register : Fragment() {
 
-    data class UserToRegister(
-        val name : String,
-        val lastName : String,
-        val birthDate : String,
-        val sex : String,
-        val document : String,
-        val country : String,
-        val city : String,
-        val email : String,
-        val password : String,
-        val preferences : List<String>
-    )
+    private val registerModel: RegisterViewModel by activityViewModels()
+
     private lateinit var binding : FragmentRegisterBinding
 
     override fun onCreateView(
@@ -48,37 +52,137 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
+        registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it){
+                this.findNavController().navigate(R.id.fragment_home)
+            }else{
+                println("Hubo un error en el registro")
 
+                /// manejar el error del registro antes con validaciones
+            }
+        } )
+
+    binding.registerModel = registerModel
         binding.apply {
+
+            fieldPassword.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updatePassword(p0.toString() )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldName.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateName(p0.toString())
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldLastname.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateLastname(p0.toString())
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
 
             fieldBirthdate.setOnClickListener{
                 showDateDialog()
             }
 
+            fieldBirthdate.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updatebirthDate(p0.toString())
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldAltura.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateAltura(p0.toString().toFloat() ?: 0f )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldPeso.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updatePeso(p0.toString().toFloat() ?: 0f )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldCountry.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateCountry(p0.toString() )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldCity.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateCity(p0.toString() )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+            //aqui!!
+            fieldSex.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                var radio: RadioButton = group.getChildAt(checkedId) as RadioButton
+                registerModel!!.updateSex(radio.text.toString())
+            })
+
+            //aqui!!
+            addChipBtn.setOnClickListener(View.OnClickListener {
+                registerModel!!.addTag(add_chip.text.toString())
+                add_chip.setText("")
+            })
+            //aqui!!
+            listTags.setOnCheckedChangeListener(ChipGroup.OnCheckedChangeListener { group, checkedId ->
+                var chip: Chip = group.getChildAt(checkedId) as Chip
+                registerModel!!.removeFromTag(chip.text.toString())
+            })
+
+
+
             buttonCancel.setOnClickListener {view: View ->
                 view.findNavController()
                     .navigate(R.id.action_register_to_frontPage)
             }
-
+            //aqui!!
             buttonRegister.setOnClickListener { view : View ->
+//                view.findNavController().navigate(R.id.action_register_to_fragment_home)
                 //hace falta impplementar
-
+                registerModel!!.register()
             }
 
 
 
-            spinnerPreferences.adapter = retrievePreferences()
-            spinnerPreferences.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    //
-                }
 
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    //
-                }
 
-            }
+
 
 
 
@@ -112,21 +216,7 @@ class Register : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
-    private fun retrievePreferences() : ArrayAdapter<String>{
-        return ArrayAdapter(
-            this@Register.requireContext(),
-            android.R.layout.simple_list_item_1,
-            arrayOf("Opcion 1","Opcion 2","Opcion 3","Opcion 4")
-        )
 
-    }
-    private fun getSex(id : Int) : RadioButton? {
-        return when (id) {
-            R.id.radiopt_m -> radiopt_m
-            R.id.radiopt_f -> radiopt_f
-            R.id.radiopt_otro -> radiopt_otro
-            else -> null
-        }
-    }
+
 
 }

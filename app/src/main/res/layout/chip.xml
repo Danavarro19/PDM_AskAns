@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+
+
+
+        <data>
+            <variable
+                name="data"
+                type="String"/>
+
+
+        </data>
+
+    <com.google.android.material.chip.Chip xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        style="@style/Widget.MaterialComponents.Chip.Action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:closeIcon="@drawable/ic_close_xhdpi_background"
+        android:text="@{data}"
+        android:id="@+id/chipAdding">
+
+    </com.google.android.material.chip.Chip>
+
+
+</layout>

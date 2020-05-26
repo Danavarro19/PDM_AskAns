@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/cuenta"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/cuenta" />
+        <item
+            android:id="@+id/notificaciones"
+            android:title="@string/notificaciones" />
+        <item
+            android:id="@+id/pagos"
+            android:title="@string/pagos" />
+        <item
+            android:id="@+id/carrito"
+            android:title="@string/carrito" />
+        <item
+            android:id="@+id/saldo"
+            android:title="@string/saldo_ganado" />
+    </group>
+
+    <item android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/cerrarSesion"
+                android:title="@string/cerrarSesion" />
+            <item
+                android:id="@+id/ayuda"
+                android:title="@string/ayuda"/>
+            <item
+                android:id="@+id/acercaDe"
+                android:title="@string/acercaDe"/>
+
+        </menu>
+    </item>
+
+</menu>

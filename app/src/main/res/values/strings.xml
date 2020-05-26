@@ -1,23 +1,41 @@
 <resources>
-    <string name="app_name">Ask&amp;AnswerViews</string>
+    <string name="app_name">Ask&amp;Answer</string>
 
-    <string name="login">ingresar</string>
-    <string name="password">contraseña</string>
+    <string name="login">Ingresar</string>
+    <string name="password">Contraseña</string>
     <string name="forgot_password">Olvidaste la contraseña?</string>
     <string name="no_account">No tienes cuenta?</string>
-    <string name="register">registrarse</string>
+    <string name="register">Registrarse</string>
 
-    <string name="name">nombres</string>
-    <string name="last_name">apellidos</string>
-    <string name="document">documento</string>
-    <string name="email">correo</string>
-    <string name="country">pais</string>
-    <string name="city">ciudad</string>
-    <string name="sex">sexo</string>
+    <string name="tag">Gustos</string>
+    <string name="peso">Peso</string>
+    <string name="altura">Altura</string>
+
+    <string name="name">Nombres</string>
+    <string name="last_name">Apellidos</string>
+    <string name="document">Documento</string>
+    <string name="email">Correo</string>
+    <string name="country">Pais</string>
+    <string name="city">Ciudad</string>
+    <string name="sex">Sexo</string>
     <string name="radiopt_masculino">M</string>
     <string name="radiopt_femenino">F</string>
-    <string name="radiopt_otro">otro</string>
-    <string name="field_birthdate">fecha de nacimiento</string>
-    <string name="field_confirmpassword">confirme contraseña</string>
-    <string name="cancelar">cancelar</string>
+    <string name="radiopt_otro">Otro</string>
+    <string name="field_birthdate">Fecha de nacimiento</string>
+    <string name="field_confirmpassword">Confirme contraseña</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="cuenta">Cuenta</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="pagos">Pagos</string>
+    <string name="carrito">Carrito</string>
+    <string name="saldo_ganado">Saldo ganado</string>
+
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="ayuda">Ayuda y comentarios</string>
+    <string name="acercaDe">Acerca de la aplicación</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="crear_encuesta">Crear encuesta</string>
 </resources>

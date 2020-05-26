@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.Register">
 
+    <data>
+        <variable
+            name="RegisterModel"
+            type="com.dnavarro.askanswerviews.viewmodels.RegisterViewModel"
+            />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -140,14 +147,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_city"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/email" />
+
+            <EditText
+                android:id="@+id/field_altura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_email"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:hint="@string/altura" />
+
+            <EditText
+                android:id="@+id/field_peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_altura"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:hint="@string/peso" />
 
             <EditText
                 android:id="@+id/field_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/field_email"
+                android:layout_below="@+id/field_peso"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/password" />
 
@@ -156,6 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_password"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:hint="@string/field_confirmpassword" />
 
@@ -166,18 +195,55 @@
                 android:layout_below="@id/field_confirmpassword"
                 android:layout_marginTop="@dimen/margin_medium" />
 
-            <ListView
-                android:layout_below="@+id/spinner_preferences"
-                android:id="@+id/list_preferences"
+            <LinearLayout
+                android:id="@+id/lineaAdd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinner_preferences"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/add_chip"
+                    android:layout_weight="9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:hint="@string/tag" />
+
+                <Button
+                    android:id="@+id/add_chip_btn"
+                    android:layout_width="68dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_wide"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="ADD" />
+
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_marginTop="24dp"
+                app:List="@{RegisterModel.tags}"
+                android:id="@+id/list_tags"
+                style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lineaAdd"
+
+                >
+
+
+
+            </com.google.android.material.chip.ChipGroup>
 
             <Button
                 android:id="@+id/button_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/list_preferences"
+                android:layout_below="@id/list_tags"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:text="@string/register" />
@@ -186,7 +252,7 @@
                 android:id="@+id/button_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/list_preferences"
+                android:layout_below="@id/list_tags"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:layout_toStartOf="@+id/button_register"
                 android:text="@string/cancelar" />

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/frontPage">
+    app:startDestination="@id/fragment_home">
 
     <fragment
         android:id="@+id/frontPage"
@@ -18,11 +18,17 @@
         android:id="@+id/register"
         android:name="com.dnavarro.askanswerviews.fragments.Register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register"
+       >
         <action
             android:id="@+id/action_register_to_frontPage"
             app:destination="@id/frontPage"
             app:popUpTo="@id/frontPage"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.dnavarro.askanswerviews.fragments.Fragment_home"
+        android:label="Fragment_home"
+        tools:layout="@layout/fragment_home"/>
 </navigation>
