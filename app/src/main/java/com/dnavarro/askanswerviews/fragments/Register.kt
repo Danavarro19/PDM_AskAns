@@ -33,6 +33,11 @@ import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.lang.Exception
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalQueries
 import java.util.*
 
 /**
@@ -54,6 +59,7 @@ class Register : Fragment() {
         )
         registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
+                println("Se registro")
                 this.findNavController().navigate(R.id.fragment_home)
             }else{
                 println("Hubo un error en el registro")
@@ -68,6 +74,26 @@ class Register : Fragment() {
             fieldPassword.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
                     registerModel!!.updatePassword(p0.toString() )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldEmail.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateEmail(p0.toString() )
+                }
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            fieldDocument.addTextChangedListener(object: TextWatcher {
+                override fun afterTextChanged(p0: Editable) {
+                    registerModel!!.updateDocument(p0.toString() )
                 }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -99,20 +125,25 @@ class Register : Fragment() {
                 showDateDialog()
             }
 
-            fieldBirthdate.addTextChangedListener(object: TextWatcher {
-                override fun afterTextChanged(p0: Editable) {
-                    registerModel!!.updatebirthDate(p0.toString())
-                }
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-            })
+//            fieldBirthdate.addTextChangedListener(object: TextWatcher {
+//                override fun afterTextChanged(p0: Editable) {
+//                    registerModel!!.updatebirthDate(p0.toString())
+//                }
+//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                }
+//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                }
+//            })
 
             fieldAltura.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
-                    registerModel!!.updateAltura(p0.toString().toFloat() ?: 0f )
-                }
+                    try {
+                        registerModel!!.updateAltura(p0.toString().toFloat() ?: 0f )
+
+                    }catch (e: Exception){
+                        println(e)
+                    }
+                  }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -121,7 +152,12 @@ class Register : Fragment() {
 
             fieldPeso.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
-                    registerModel!!.updatePeso(p0.toString().toFloat() ?: 0f )
+                    try {
+                        registerModel!!.updatePeso(p0.toString().toFloat() ?: 0f )
+                    }catch (e: Exception){
+                        println(e)
+                    }
+
                 }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -129,15 +165,19 @@ class Register : Fragment() {
                 }
             })
 
-            fieldCountry.addTextChangedListener(object: TextWatcher {
-                override fun afterTextChanged(p0: Editable) {
-                    registerModel!!.updateCountry(p0.toString() )
-                }
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-            })
+            pickerCountry.setOnCountryChangeListener {
+                registerModel!!.updateCountry(pickerCountry.textView_selectedCountry.text.toString() )
+            }
+
+//            fieldCountry.addTextChangedListener(object: TextWatcher {
+//                override fun afterTextChanged(p0: Editable) {
+//                    registerModel!!.updateCountry(p0.toString() )
+//                }
+//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                }
+//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                }
+//            })
 
             fieldCity.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(p0: Editable) {
@@ -149,14 +189,37 @@ class Register : Fragment() {
                 }
             })
             //aqui!!
-            fieldSex.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                var radio: RadioButton = group.getChildAt(checkedId) as RadioButton
-                registerModel!!.updateSex(radio.text.toString())
-            })
+//            fieldSex.setOnCheckedChangeListener { group, checkedId ->
+//
+//                registerModel!!.updateSex(radio.text.toString())
+//            }
+            radioptF.setOnClickListener {
+                registerModel!!.updateSex(radioptF.text.toString())
+            }
+
+            radioptM.setOnClickListener {
+                registerModel!!.updateSex(radioptM.text.toString())
+            }
+            radioptOtro.setOnClickListener {
+                registerModel!!.updateSex(radioptOtro.text.toString())
+            }
+
+
+
 
             //aqui!!
             addChipBtn.setOnClickListener(View.OnClickListener {
                 registerModel!!.addTag(add_chip.text.toString())
+                var chip = Chip(context)
+                chip.text = add_chip.text.toString()
+                chip.isCloseIconVisible = true
+                chip.isClickable = false
+                chip.isCheckable = false
+                listTags.addView(chip)
+                chip.setOnCloseIconClickListener {
+                    listTags.removeView(chip)
+                    registerModel!!.removeFromTag(chip.text.toString())
+                }
                 add_chip.setText("")
             })
             //aqui!!
@@ -200,6 +263,9 @@ class Register : Fragment() {
 
         val mDateListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
             binding.fieldBirthdate.text = "${day}/${month+1}/${year}"
+            var fecha = Calendar.getInstance()
+            fecha.set(year,month,day)
+            registerModel!!.updatebirthDate(fecha.time.toString())
         }
 
         val cal = Calendar.getInstance()

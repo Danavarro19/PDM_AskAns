@@ -1,6 +1,7 @@
 package com.dnavarro.askanswerviews.utils
 
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,7 @@ import com.google.android.material.chip.ChipGroup
 
 @BindingAdapter("app:errorMsg")
 fun errorMsg(view: TextView, msg: String){
-    println("msg: "+msg)
+    println("msg: $msg")
     if(msg != ""){
         println("adapter-entro")
         view.error = msg
@@ -33,18 +34,26 @@ fun errorMsg(view: TextView, msg: String){
 fun chips(view: ChipGroup, lista: MutableCollection<String>){
     println("create list of chips")
 //    view.removeAllViews()
-    var inflater: LayoutInflater = view.context as LayoutInflater
+//    var inflater: LayoutInflater = view.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     var a = 0
     lista.forEach {
-        println("tag: " + it)
-        var binding = DataBindingUtil.inflate(inflater, R.layout.chip, view, true) as ViewDataBinding
-        binding.setVariable(BR.data,it)
+        println("tag: ".plus(it))
+//        var binding = DataBindingUtil.inflate(inflater, R.layout.chip, view, true) as ViewDataBinding
+//
+//        binding.setVariable(BR.data,it)
+
+//        var chip = inflater.inflate(R.layout.chip,null) as Chip
+//        var chip = Chip(view.context)
 //        var chip = Chip(view.context,null, R.style.Widget_MaterialComponents_Chip_Action)
 //        var chip = ChipGroup.inflate(view.context,R.layout.chip,view) as Chip
 //        var chip = LayoutInflater.from(view.context).inflate(R.layout.chip,null, false) as Chip
 //        var chip = Chip.inflate(view.context,R.layout.chip,view) as Chip
 
 //        chip.text = it
+//        chip.isCloseIconVisible = true
+//        chip.isClickable = false
+//        chip.isCheckable = false
+
 //        chip.layoutParams.width = ChipGroup.LayoutParams.WRAP_CONTENT
 //        chip.layoutParams.height = ChipGroup.LayoutParams.WRAP_CONTENT
 //        chip.isClickable = true

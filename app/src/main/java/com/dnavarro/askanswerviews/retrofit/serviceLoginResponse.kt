@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val URL: String = "http://192.168.1.15:3001/movil/"
+    private const val URL: String = "http://192.168.1.8:3001/movil/"
     private val client = OkHttpClient.Builder().build()
 
     private val retrofit = Retrofit.Builder()

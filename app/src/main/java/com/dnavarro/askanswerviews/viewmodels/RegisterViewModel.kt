@@ -68,9 +68,10 @@ class RegisterViewModel: ViewModel() {
     fun register(){
         //todas las validaciones aqui
 
-        var sendData: registerBody = registerBody(_name.value.toString(),_lastname.value.toString(),_birtDate.toString(),
+        var sendData: registerBody = registerBody(_name.value.toString(),_lastname.value.toString(),_birtDate.value.toString(),
         _sex.value.toString(),_document.value.toString(),_country.value.toString(),_city.value.toString(),_email.value.toString(),
         _password.value.toString(),_tags.value!!,_altura.value!!,_peso.value!!)
+        println("${sendData.sexo} ${sendData.altura} ${sendData.apellido} ${sendData.email} ${sendData.nacimiento} ${sendData.numId} ${sendData.ciudad} ${sendData.pais} ${sendData.password} ${sendData.tags}")
         userRepo.register(sendData)
     }
 

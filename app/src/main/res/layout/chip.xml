@@ -19,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:closeIcon="@drawable/ic_close_xhdpi_background"
-        android:text="@{data}"
         android:id="@+id/chipAdding">
 
     </com.google.android.material.chip.Chip>
