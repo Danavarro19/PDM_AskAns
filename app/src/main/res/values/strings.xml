@@ -35,6 +35,10 @@
     <string name="ayuda">Ayuda y comentarios</string>
     <string name="acercaDe">Acerca de la aplicación</string>
 
+    <string name="inputEncuestaNombre">Nombre encuesta</string>
+    <string name="inputEncuestaDescripcion">Descripción encuesta</string>
+    <string name="inputbtnsave">Guardar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="crear_encuesta">Crear encuesta</string>
