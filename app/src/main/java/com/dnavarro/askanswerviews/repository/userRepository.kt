@@ -23,6 +23,7 @@ class UserRepository {
     val register: LiveData<Boolean> get() = _register
     init { //implementar cookie session
         _pass.value = false
+        _register.value = false
     }
     fun Login(mail: String, password: String){
         var result: Boolean = false
@@ -65,6 +66,9 @@ class UserRepository {
                     println("Result ${response.body()}")
                     result = response.body()!!.correct
                     _register.value = result
+                    if(result){
+                        _pass.value = true
+                    }
                     println("Result $result")
                 }else{
 
