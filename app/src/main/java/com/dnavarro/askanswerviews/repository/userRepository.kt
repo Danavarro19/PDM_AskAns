@@ -4,18 +4,17 @@ import android.util.MutableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dnavarro.askanswerviews.entity.*
+import com.dnavarro.askanswerviews.retrofit.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-import com.dnavarro.askanswerviews.retrofit.loginInterface
-import com.dnavarro.askanswerviews.retrofit.serviceLoginResponse
-import com.dnavarro.askanswerviews.retrofit.registerInterface
-import com.dnavarro.askanswerviews.retrofit.sessionInterface
-
 class UserRepository {
+    //encuestas
+    private val _encuestas = MutableLiveData<MutableCollection<encuesta>>()
+    private val encuestas: LiveData<MutableCollection<encuesta>> get() = _encuestas
     private val _pass = MutableLiveData<Boolean>()
+    //validacion
     val pass: LiveData<Boolean> get() =  _pass
     val _register = MutableLiveData<Boolean>()
     val register: LiveData<Boolean> get() = _register
@@ -23,6 +22,7 @@ class UserRepository {
         session()
         _pass.value = false
         _register.value = false
+        _encuestas.value = mutableSetOf<encuesta>()
     }
 
 
@@ -113,6 +113,37 @@ class UserRepository {
 
 
 
+    }
+
+    fun getEncuestas(){
+        if(_pass.value!!){
+            val request = serviceLoginResponse.buildService(encuestaInterface::class.java)
+            val call  = request.getEncuestas()
+            var result: Boolean = false
+            call.enqueue(object: Callback<encuestasResponse>{
+                override fun onResponse(call: Call<encuestasResponse>, response: Response<encuestasResponse>) {
+                    if(response.isSuccessful){
+                        println("Result ${response.body()}")
+                        result = response.body()!!.correct
+
+                        if(result){
+                            _encuestas.value = response.body()!!.encuestas
+                        }
+                        println("Result $result")
+                    }else{
+
+                        result = false
+
+                    }
+
+                }
+                override fun onFailure(call: Call<encuestasResponse>, t: Throwable) {
+                    println(t.message)
+                    result = false
+                }
+
+            })
+        }
     }
 
     fun registerSession(){
