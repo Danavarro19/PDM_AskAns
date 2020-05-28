@@ -39,6 +39,11 @@
     <string name="inputEncuestaDescripcion">Descripción encuesta</string>
     <string name="inputbtnsave">Guardar</string>
 
+    <string-array name="TipoPreguntas">
+        <item>Abierta</item>
+        <item>Opcion Multiple</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="crear_encuesta">Crear encuesta</string>
