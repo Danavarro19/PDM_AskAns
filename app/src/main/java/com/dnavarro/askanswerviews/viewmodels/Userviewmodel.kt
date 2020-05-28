@@ -26,8 +26,8 @@ class Userviewmodel: ViewModel() {
         _encuestaToUpdate.value = encuesta;
     }
     fun Create(){
-        _encuestaToUpdate.value = encuesta("","","",
-        "", mutableListOf(), mutableListOf())
+        _encuestaToUpdate.value = encuesta("","",
+         mutableListOf())
     }
     fun Clear(){
         _encuestaToUpdate.value = null

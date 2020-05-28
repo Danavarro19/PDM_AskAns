@@ -40,8 +40,8 @@
     <string name="inputbtnsave">Guardar</string>
 
     <string-array name="TipoPreguntas">
-        <item>Abierta</item>
-        <item>Opcion Multiple</item>
+        <item>Respuesta abierta.</item>
+        <item>Opcion Multiple.</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
