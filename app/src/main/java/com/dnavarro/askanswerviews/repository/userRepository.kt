@@ -10,19 +10,28 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository {
+
+    private val _CreadoOActualizado = MutableLiveData<Boolean>()
+    val CreadoOActualizado: LiveData<Boolean> get() = _CreadoOActualizado
+
     //encuestas
     private val _encuestas = MutableLiveData<MutableCollection<encuesta>>()
-    private val encuestas: LiveData<MutableCollection<encuesta>> get() = _encuestas
+    val encuestas: LiveData<MutableCollection<encuesta>> get() = _encuestas
     private val _pass = MutableLiveData<Boolean>()
     //validacion
     val pass: LiveData<Boolean> get() =  _pass
     val _register = MutableLiveData<Boolean>()
     val register: LiveData<Boolean> get() = _register
     init { //implementar cookie session
+
         session()
         _pass.value = false
         _register.value = false
         _encuestas.value = mutableSetOf<encuesta>()
+    }
+
+    fun resetCreateUpdate(){
+        _CreadoOActualizado.value = false
     }
 
 
@@ -146,8 +155,66 @@ class UserRepository {
         }
     }
 
+    fun actualizarOCrearEncuesta(encuesta: encuesta){
+        var result: Boolean = false
+        val request = serviceLoginResponse.buildService(crearEncuestaInterface::class.java)
+        val call  = request.crearOActualizar(encuestaRequest(encuesta))
+
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.headers()}")
+                    result = response.body()!!.correct
+                    _CreadoOActualizado.value = result
+                    getEncuestas()
+                    println("Result $result")
+                }else{
+
+                    result = false
+                    _CreadoOActualizado.value = result
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+
+    }
+
     fun registerSession(){
         _pass.value = true
     }
+
+    fun deleteEncuesta(encuesta: encuesta){
+        var result: Boolean = false
+        val request = serviceLoginResponse.buildService(deleteEncuestaInterface::class.java)
+        val call  = request.deleteEncuesta(deleteRequest(encuesta._id))
+
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.headers()}")
+                    result = response.body()!!.correct
+                    getEncuestas()
+                    println("Result $result")
+                }else{
+
+                    result = false
+
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+    }
+
+
 
 }

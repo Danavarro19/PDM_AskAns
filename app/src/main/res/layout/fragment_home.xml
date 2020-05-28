@@ -13,17 +13,40 @@
             android:id="@+id/crearEncuesta_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/crear_encuesta"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="406dp"
+            android:layout_height="611dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/bnvMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/crearEncuesta_button"
+            tools:ignore="NotSibling">
+
+            <LinearLayout
+                android:id="@+id/listaEncuestas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
         <RelativeLayout
             android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appBar.AppBarLayout$ScrollingViewBehavior">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_behavior="com.google.android.material.appBar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bnvMenu"

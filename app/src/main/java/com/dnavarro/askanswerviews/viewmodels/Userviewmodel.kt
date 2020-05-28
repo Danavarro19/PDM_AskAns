@@ -8,6 +8,9 @@ import com.dnavarro.askanswerviews.repository.UserRepository
 import java.lang.Exception
 class Userviewmodel: ViewModel() {
     private val userRepo = UserRepository()
+
+    val UpdateOrCreated = userRepo.CreadoOActualizado
+    val listaEncuesta: LiveData<MutableCollection<encuesta>> = userRepo.encuestas
     private val _mail = MutableLiveData<String>()
     val pass: LiveData<Boolean> = userRepo.pass
     val mail: LiveData<String> get() = _mail
@@ -15,6 +18,7 @@ class Userviewmodel: ViewModel() {
     val password: LiveData<String> get() = _password;
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> get() = _msg
+
 
     private val _estado = MutableLiveData<String>()
     val estado: LiveData<String> get()  = _estado
@@ -26,18 +30,32 @@ class Userviewmodel: ViewModel() {
         _encuestaToUpdate.value = encuesta;
     }
     fun Create(){
-        _encuestaToUpdate.value = encuesta("","",
+        _encuestaToUpdate.value = encuesta("","","","",
          mutableListOf())
     }
     fun Clear(){
         _encuestaToUpdate.value = null
     }
+
+    fun deleteEncuesta(encuesta: encuesta){
+        userRepo.deleteEncuesta(encuesta)
+    }
+
     init {
         _mail.value = ""
         _password.value = ""
         _msg.value = ""
         _estado.value = "None"
     }
+
+    fun createOrUpdate(encuesta: encuesta){
+        userRepo.actualizarOCrearEncuesta(encuesta)
+    }
+
+    fun resetUpdateOrCreate(){
+        userRepo.resetCreateUpdate()
+    }
+
     fun ToCreate(){
         _estado.value ="Create"
     }
@@ -50,6 +68,9 @@ class Userviewmodel: ViewModel() {
 
     fun register(){
         userRepo.registerSession()
+    }
+    fun updateEncuestas(){
+        userRepo.getEncuestas()
     }
     fun checkPassword(){
         try {

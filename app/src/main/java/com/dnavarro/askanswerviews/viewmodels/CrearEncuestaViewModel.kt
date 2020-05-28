@@ -8,42 +8,42 @@ import com.dnavarro.askanswerviews.entity.pregunta
 
 class CrearEncuestaViewModel:ViewModel() {
 
-    private val _encuesta = MutableLiveData<encuesta>()
-    val encuesta: LiveData<encuesta> get() = _encuesta
+    val encuesta = MutableLiveData<encuesta>()
+    val encuestaT: LiveData<encuesta> get() = encuesta
 
 
-    fun init(encuesta: encuesta){
-        _encuesta.value = encuesta
+    fun init(encuest: encuesta){
+        encuesta.value = encuest
     }
 
     fun clean(){
-        _encuesta.value = null
+        encuesta.value = null
     }
 
     fun updateNombre(nombre: String){
-        _encuesta.value!!.nombre_encuesta = nombre
+        encuesta.value!!.nombre_encuesta = nombre
     }
 
     fun update_descripcion(descr: String){
-        _encuesta.value!!.descrip_encuesta = descr
+        encuesta.value!!.descrip_encuesta = descr
     }
 
     fun getEncuesta(): encuesta{
-        return _encuesta.value!!
+        return encuestaT.value!!
     }
 
 
 
     fun addQuestion(pre: pregunta){
-        _encuesta.value!!.preguntas.add(pre)
+        encuesta.value!!.preguntas.add(pre)
     }
 
     fun deleteQuestion(pre: pregunta){
-        _encuesta.value!!.preguntas.remove(pre)
+        encuesta.value!!.preguntas.remove(pre)
     }
 
     fun editQuestion(pre: pregunta, next: pregunta){
-        _encuesta.value!!.preguntas.elementAt(_encuesta.value!!.preguntas.indexOf(pre)).apply {
+        encuesta.value!!.preguntas.elementAt(encuesta.value!!.preguntas.indexOf(pre)).apply {
 
             encabezado = next.encabezado
             tipo = next.tipo
