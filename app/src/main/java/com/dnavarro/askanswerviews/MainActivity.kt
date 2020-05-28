@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.dnavarro.askanswerviews.databinding.ActivityMainBinding
+import com.dnavarro.askanswerviews.retrofit.serviceLoginResponse
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.android.material.navigation.NavigationView
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        serviceLoginResponse.init(this.application)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this, R.layout.activity_main)

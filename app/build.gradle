@@ -68,8 +68,8 @@ dependencies {
     //Country picker
     implementation 'com.hbb20:ccp:2.3.9'
 
-    //GSON
-
+    //persistance
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

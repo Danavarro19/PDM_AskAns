@@ -38,14 +38,14 @@ class UserRepository {
                     _pass.value = result
                     println("Result $result")
                 }else{
-
+                    println("Result ${response.headers()}")
                     result = false
                     _pass.value = result
                 }
 
             }
             override fun onFailure(call: Call<sessionResponse>, t: Throwable) {
-                println(t.message)
+                println("Fail " + t.message)
                 result = false
             }
 
