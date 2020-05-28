@@ -3,7 +3,7 @@ package com.dnavarro.askanswerviews.repository
 import android.util.MutableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dnavarro.askanswerviews.entity.loginData
+import com.dnavarro.askanswerviews.entity.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,10 +11,8 @@ import retrofit2.Response
 
 import com.dnavarro.askanswerviews.retrofit.loginInterface
 import com.dnavarro.askanswerviews.retrofit.serviceLoginResponse
-import com.dnavarro.askanswerviews.entity.loginResponse
-import com.dnavarro.askanswerviews.entity.registerBody
-import com.dnavarro.askanswerviews.entity.registerResponse
 import com.dnavarro.askanswerviews.retrofit.registerInterface
+import com.dnavarro.askanswerviews.retrofit.sessionInterface
 
 class UserRepository {
     private val _pass = MutableLiveData<Boolean>()
@@ -22,9 +20,38 @@ class UserRepository {
     val _register = MutableLiveData<Boolean>()
     val register: LiveData<Boolean> get() = _register
     init { //implementar cookie session
+        session()
         _pass.value = false
         _register.value = false
     }
+
+
+    fun session(){
+        val request = serviceLoginResponse.buildService(sessionInterface::class.java)
+        val call  = request.getsession()
+        var result: Boolean = false
+        call.enqueue(object: Callback<sessionResponse>{
+            override fun onResponse(call: Call<sessionResponse>, response: Response<sessionResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.headers()}")
+                    result = response.body()!!.session
+                    _pass.value = result
+                    println("Result $result")
+                }else{
+
+                    result = false
+                    _pass.value = result
+                }
+
+            }
+            override fun onFailure(call: Call<sessionResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+    }
+
     fun Login(mail: String, password: String){
         var result: Boolean = false
         val request = serviceLoginResponse.buildService(loginInterface::class.java)
@@ -33,7 +60,7 @@ class UserRepository {
         call.enqueue(object: Callback<loginResponse>{
             override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
                 if(response.isSuccessful){
-                    println("Result ${response.body()}")
+                    println("Result ${response.headers()}")
                     result = response.body()!!.correct
                     _pass.value = result
                     println("Result $result")
@@ -86,6 +113,10 @@ class UserRepository {
 
 
 
+    }
+
+    fun registerSession(){
+        _pass.value = true
     }
 
 }

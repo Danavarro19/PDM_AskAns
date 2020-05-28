@@ -14,10 +14,15 @@ class Userviewmodel: ViewModel() {
     val password: LiveData<String> get() = _password;
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> get() = _msg
+
     init {
         _mail.value = ""
         _password.value = ""
         _msg.value = ""
+    }
+
+    fun register(){
+        userRepo.registerSession()
     }
     fun checkPassword(){
         try {

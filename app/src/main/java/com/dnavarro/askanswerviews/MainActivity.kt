@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         drawerLayout = binding.drawerLayout
 
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)

@@ -46,6 +46,7 @@ import java.util.*
 class Register : Fragment() {
 
     private val registerModel: RegisterViewModel by activityViewModels()
+    private val userModel: Userviewmodel by activityViewModels()
 
     private lateinit var binding : FragmentRegisterBinding
 
@@ -60,6 +61,7 @@ class Register : Fragment() {
         registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
                 println("Se registro")
+                userModel.register()
                 this.findNavController().navigate(R.id.fragment_home)
             }else{
                 println("Hubo un error en el registro")
