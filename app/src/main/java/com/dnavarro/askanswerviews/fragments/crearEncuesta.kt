@@ -104,6 +104,7 @@ class crearEncuesta : Fragment() {
         //creacion de preguntas
         crearEncuesta.encuesta.value!!.preguntas.forEach {
             var pregunt = CardView(this.context!!)
+            var containerPrincipal = LinearLayout(this.context)
             //encabezado
             var encabezado = EditText(this.context)
             encabezado.addTextChangedListener(object: TextWatcher{
@@ -116,7 +117,7 @@ class crearEncuesta : Fragment() {
                 }
             })
 
-            pregunt.addView(encabezado)
+            containerPrincipal.addView(encabezado)
             var deletePregunta = Button(this.context)
             deletePregunta.setText("-")
             pregunt.addView(deletePregunta)
@@ -129,7 +130,7 @@ class crearEncuesta : Fragment() {
                 it.pregunta_abierta = pregunta_abierta.isChecked
 
             }
-            pregunt.addView(pregunta_abierta)
+            containerPrincipal.addView(pregunta_abierta)
 
             var multi_respuesta = RadioButton(this.context)
             multi_respuesta.setText("Multi Respuestas")
@@ -137,7 +138,7 @@ class crearEncuesta : Fragment() {
             multi_respuesta.setOnClickListener { view ->
                 it.multi_respuesta = multi_respuesta.isChecked
             }
-            pregunt.addView(multi_respuesta)
+            containerPrincipal.addView(multi_respuesta)
 
             var requiere = RadioButton(this.context)
             requiere.setText("Obligatoria")
@@ -145,7 +146,7 @@ class crearEncuesta : Fragment() {
             requiere.setOnClickListener { view ->
                 it.requiere = requiere.isChecked
             }
-            pregunt.addView(requiere)
+            containerPrincipal.addView(requiere)
 
             var contenedorCreateOpciones = LinearLayout(this.context)
             contenedorCreateOpciones.orientation = LinearLayout.HORIZONTAL
@@ -156,7 +157,7 @@ class crearEncuesta : Fragment() {
 
             contenedorCreateOpciones.addView(listaOpciones)
             contenedorCreateOpciones.addView(btn_addOption)
-            pregunt.addView(contenedorCreateOpciones)
+            containerPrincipal.addView(contenedorCreateOpciones)
 
             var contenedorOpciones = LinearLayout(this.context)
             contenedorOpciones.orientation = LinearLayout.VERTICAL
@@ -223,8 +224,10 @@ class crearEncuesta : Fragment() {
                 contenedorOpciones.addView(contenedorOpcion)
             }
 
-            pregunt.addView(contenedorOpciones)
-            deletePregunta.setOnClickListener{
+            containerPrincipal.addView(contenedorOpciones)
+            pregunt.addView(containerPrincipal)
+            binding.listaPreguntas.addView(pregunt)
+            deletePregunta.setOnClickListener{del ->
                 binding.listaPreguntas.removeView(pregunt)
                 crearEncuesta.encuesta.value!!.preguntas.remove(it)
             }
@@ -235,8 +238,12 @@ class crearEncuesta : Fragment() {
             var newPregunta = pregunta("", binding.tipoPreguntas.selectedItem.toString(),false,false,false,
                 mutableListOf())
             var pregunt = CardView(this.context!!)
+            var containerPrincipal = LinearLayout(this.context)
+            containerPrincipal.orientation = LinearLayout.VERTICAL
+
             //encabezado
             var encabezado = EditText(this.context)
+            encabezado.hint = "Titulo pregunta"
             encabezado.addTextChangedListener(object: TextWatcher{
                 override fun afterTextChanged(p0: Editable) {
                     crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).encabezado = p0.toString()
@@ -248,7 +255,7 @@ class crearEncuesta : Fragment() {
                 }
             })
 
-            pregunt.addView(encabezado)
+            containerPrincipal.addView(encabezado)
             var deletePregunta = Button(this.context)
             deletePregunta.setText("-")
             pregunt.addView(deletePregunta)
@@ -263,7 +270,7 @@ class crearEncuesta : Fragment() {
                 newPregunta.pregunta_abierta = pregunta_abierta.isChecked
 
             }
-            pregunt.addView(pregunta_abierta)
+            containerPrincipal.addView(pregunta_abierta)
 
             var multi_respuesta = RadioButton(this.context)
             multi_respuesta.setText("Multi Respuestas")
@@ -273,7 +280,7 @@ class crearEncuesta : Fragment() {
 
                 newPregunta.multi_respuesta = multi_respuesta.isChecked
             }
-            pregunt.addView(multi_respuesta)
+            containerPrincipal.addView(multi_respuesta)
 
             var requiere = RadioButton(this.context)
             requiere.setText("Obligatoria")
@@ -283,7 +290,7 @@ class crearEncuesta : Fragment() {
 
                 newPregunta.requiere = requiere.isChecked
             }
-            pregunt.addView(requiere)
+            containerPrincipal.addView(requiere)
 
             var contenedorCreateOpciones = LinearLayout(this.context)
             contenedorCreateOpciones.orientation = LinearLayout.HORIZONTAL
@@ -294,7 +301,7 @@ class crearEncuesta : Fragment() {
 
             contenedorCreateOpciones.addView(listaOpciones)
             contenedorCreateOpciones.addView(btn_addOption)
-            pregunt.addView(contenedorCreateOpciones)
+            containerPrincipal.addView(contenedorCreateOpciones)
 
             var contenedorOpciones = LinearLayout(this.context)
             contenedorOpciones.orientation = LinearLayout.VERTICAL
@@ -343,7 +350,9 @@ class crearEncuesta : Fragment() {
                 contenedorOpciones.addView(contenedorOpcion)
             }
 
-            pregunt.addView(contenedorOpciones)
+            containerPrincipal.addView(contenedorOpciones)
+            pregunt.addView(containerPrincipal)
+            binding.listaPreguntas.addView(pregunt)
             deletePregunta.setOnClickListener{
                 binding.listaPreguntas.removeView(pregunt)
                 crearEncuesta.encuesta.value!!.preguntas.remove(newPregunta)
