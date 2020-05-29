@@ -22,7 +22,7 @@ import java.net.CookieStore
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val URL: String = "http://192.168.1.8:3001/movil/"
+    private const val URL: String = "http://192.168.1.6:3001/movil/"
     private lateinit var context: Application
 
 
@@ -31,7 +31,7 @@ object serviceLoginResponse {
         storeC = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(this.context.applicationContext))
         intercep = HttpLoggingInterceptor()
         intercep.level = HttpLoggingInterceptor.Level.BODY
-        client = OkHttpClient.Builder().addNetworkInterceptor(intercep).cookieJar(storeC).build()
+        client = OkHttpClient.Builder().addNetworkInterceptor(intercep).retryOnConnectionFailure(true).cookieJar(storeC).build()
         retrofit = Retrofit.Builder()
 
             .baseUrl(URL)

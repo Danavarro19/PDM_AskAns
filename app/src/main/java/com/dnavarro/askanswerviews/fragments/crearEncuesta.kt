@@ -73,6 +73,7 @@ class crearEncuesta : Fragment() {
         userModel.UpdateOrCreated.observe(viewLifecycleOwner, Observer {
             if(it){
                 this.findNavController().navigate(R.id.action_crearEncuesta_to_fragment_home)
+
             }else{
                 println("Ocurrio un Error")
             }
@@ -105,8 +106,10 @@ class crearEncuesta : Fragment() {
         crearEncuesta.encuesta.value!!.preguntas.forEach {
             var pregunt = CardView(this.context!!)
             var containerPrincipal = LinearLayout(this.context)
+            containerPrincipal.orientation = LinearLayout.VERTICAL
             //encabezado
             var encabezado = EditText(this.context)
+            encabezado.setText(it.encabezado)
             encabezado.addTextChangedListener(object: TextWatcher{
                 override fun afterTextChanged(p0: Editable) {
                     it.encabezado = p0.toString()
@@ -120,7 +123,7 @@ class crearEncuesta : Fragment() {
             containerPrincipal.addView(encabezado)
             var deletePregunta = Button(this.context)
             deletePregunta.setText("-")
-            pregunt.addView(deletePregunta)
+            containerPrincipal.addView(deletePregunta)
 
 
             var pregunta_abierta = RadioButton(this.context)
@@ -222,6 +225,7 @@ class crearEncuesta : Fragment() {
                 contenedorOpcion.addView(btnDeleteOpcion)
 
                 contenedorOpciones.addView(contenedorOpcion)
+
             }
 
             containerPrincipal.addView(contenedorOpciones)
@@ -233,10 +237,13 @@ class crearEncuesta : Fragment() {
             }
 
         }
+
+
         binding.addPregunta.setText("+")
         binding.addPregunta.setOnClickListener{btn ->
             var newPregunta = pregunta("", binding.tipoPreguntas.selectedItem.toString(),false,false,false,
                 mutableListOf())
+            crearEncuesta.encuesta.value!!.preguntas.add(newPregunta)
             var pregunt = CardView(this.context!!)
             var containerPrincipal = LinearLayout(this.context)
             containerPrincipal.orientation = LinearLayout.VERTICAL
@@ -246,6 +253,7 @@ class crearEncuesta : Fragment() {
             encabezado.hint = "Titulo pregunta"
             encabezado.addTextChangedListener(object: TextWatcher{
                 override fun afterTextChanged(p0: Editable) {
+                    println("element at:" + crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
                     crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).encabezado = p0.toString()
                     newPregunta.encabezado = p0.toString()
                  }
@@ -258,7 +266,7 @@ class crearEncuesta : Fragment() {
             containerPrincipal.addView(encabezado)
             var deletePregunta = Button(this.context)
             deletePregunta.setText("-")
-            pregunt.addView(deletePregunta)
+            containerPrincipal.addView(deletePregunta)
 
 
             var pregunta_abierta = RadioButton(this.context)

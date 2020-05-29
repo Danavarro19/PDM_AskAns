@@ -37,7 +37,9 @@ class UserRepository {
 
     fun session(){
         val request = serviceLoginResponse.buildService(sessionInterface::class.java)
+
         val call  = request.getsession()
+
         var result: Boolean = false
         call.enqueue(object: Callback<sessionResponse>{
             override fun onResponse(call: Call<sessionResponse>, response: Response<sessionResponse>) {
@@ -137,6 +139,8 @@ class UserRepository {
 
                         if(result){
                             _encuestas.value = response.body()!!.encuestas
+                            println("encuestas: " + encuestas.value)
+
                         }
                         println("Result $result")
                     }else{
@@ -155,6 +159,8 @@ class UserRepository {
         }
     }
 
+
+
     fun actualizarOCrearEncuesta(encuesta: encuesta){
         var result: Boolean = false
         val request = serviceLoginResponse.buildService(crearEncuestaInterface::class.java)
@@ -166,7 +172,7 @@ class UserRepository {
                     println("Result ${response.headers()}")
                     result = response.body()!!.correct
                     _CreadoOActualizado.value = result
-                    getEncuestas()
+
                     println("Result $result")
                 }else{
 

@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentHomeBinding
+import com.dnavarro.askanswerviews.entity.encuesta
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,10 +53,12 @@ class Fragment_home : Fragment() {
         userModel.ToClearState()
         userModel.Clear()
 
-        userModel.listaEncuesta.observe(viewLifecycleOwner, Observer {
-            if(!it.isEmpty()){
+        userModel.listaEncuesta.observe(viewLifecycleOwner, Observer {  it: MutableCollection<encuesta> ->
+            println("encuestas Observer:"+userModel.listaEncuesta.value)
+            if(!userModel.listaEncuesta.value!!.isEmpty()){
+                println("entra a armas listas")
                 binding.listaEncuestas.removeAllViews()
-                it.forEach {encu ->
+                userModel.listaEncuesta.value!!.forEach {encu ->
                     var newCarEncuesta = CardView(this.context!!)
                     var container = LinearLayout(this.context)
                     container.orientation = LinearLayout.VERTICAL
@@ -68,6 +71,9 @@ class Fragment_home : Fragment() {
                     titulo.setText(encu.nombre_encuesta)
                     var descripcion = TextView(this.context)
                     descripcion.setText(encu.descrip_encuesta)
+
+                    container.addView(titulo)
+                    container.addView(descripcion)
 
                     var containerActions = LinearLayout(this.context)
                     containerActions.orientation = LinearLayout.HORIZONTAL
@@ -87,13 +93,19 @@ class Fragment_home : Fragment() {
                         this.findNavController().navigate(R.id.action_fragment_home_to_crearEncuesta)
                     }
 
+                    containerActions.addView(btn_editar)
+                    containerActions.addView(btn_eliminar)
 
-
+                    container.addView(containerActions)
+                    newCarEncuesta.addView(container)
+                    binding.listaEncuestas.addView(newCarEncuesta)
 
 
                 }
             }else{
-                println("la lista no tiene nada")
+                binding.listaEncuestas.removeAllViews()
+                println(it)
+                println("la lista no tiene nada" + it)
             }
         })
         binding.crearEncuestaButton.setOnClickListener {
