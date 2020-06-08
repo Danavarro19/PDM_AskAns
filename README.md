@@ -9,6 +9,8 @@ El sistema funciona en Windows, debido a que usa lectura de archivos del sistema
 en Linux o Mac.
 
 ### Prerequisites
+Link de la api: https://github.com/GerryMG2/appMovilesApi
+
 Para asegurar el buen funcionamiento de la api, seguir los siguientes pasos:
 
 (Esto de debe de aplicar al documento .envExample)
