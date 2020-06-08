@@ -8,8 +8,9 @@ La aplicación fue diseñada para crear toda la base de datos dinámicamente, as
 El sistema funciona en Windows, debido a que usa lectura de archivos del sistema par crear las tablas del modelo transaccional en Postgress, no estamos seguros de su funcionamiento 
 en Linux o Mac.
 
-### Prerequisites
 Link de la api: https://github.com/GerryMG2/appMovilesApi
+
+### Prerequisites
 
 Para asegurar el buen funcionamiento de la api, seguir los siguientes pasos:
 
