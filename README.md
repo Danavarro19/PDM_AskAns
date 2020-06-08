@@ -44,10 +44,10 @@ Para poder crear estos archivos, tendremos que ejecutar los siguientes comandos 
 y posteriormente se trasladaron al sistema operativo Windows donde se aloja la api), en el orden que 
 se muestra a continuación:
 
-openssl genrsa -out key.pem
-openssl req -new -key key.pem -out csr.pem
-openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
-rm csr.pem
+- openssl genrsa -out key.pem
+- openssl req -new -key key.pem -out csr.pem
+- openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+- rm csr.pem
 
 Una vez creados los archivos, (como se mencionó anteriormente, estos fueron creados en Ubuntu), ahora se tendrán que mover 
 a la carpeta en donde se aloja la api (en nuestro caso, lo teníamos en una computadora con sistema operativo Windows), los dos 
