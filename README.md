@@ -37,6 +37,33 @@ en este ejemplo, o sea, dejarla habilitada)
 - Luego la URL admin/module llevará a un login en donde se pueden gestionar todas las tablas. (Es el módulo administrativo).
 
 
+Realizados los pasos anteriores, se tendrá que crear un servidor HTTPS, para esto se necesitan dos cosas:
+un certificado SSL y un módulo https Node.js incorporado.
+
+Para poder crear estos archivos, tendremos que ejecutar los siguientes comandos (estos se ejecutan en la consola de Ubuntu 
+y posteriormente se trasladaron al sistema operativo Windows donde se aloja la api), en el orden que 
+se muestra a continuación:
+
+openssl genrsa -out key.pem
+openssl req -new -key key.pem -out csr.pem
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+rm csr.pem
+
+Una vez creados los archivos, (como se mencionó anteriormente, estos fueron creados en Ubuntu), ahora se tendrán que mover 
+a la carpeta en donde se aloja la api (en nuestro caso, lo teníamos en una computadora con sistema operativo Windows), los dos 
+archivos se guardarán en la carpeta bin (esta se encuentra dentro del proyecto de la api).
+
+Los dos archivos que tienen que estar alojados en la carpeta bin, ubicada dentro del proyecto de la api, son:
+- cert.pem
+- key.pem
+
+Ahora se tiene que crear la siguiente carpeta llamada "assets", detro de app/src/main, esto se debe de hacer en el proyecto
+de Android Studio.
+
+El archivo que pondremos dentro de la carpeta creada anteriormente tiene que ser cert.pem, en este caso solo basta con copiar el arvicho 
+que fue creado con anterioridad.
+
+
 ### Installing
 
 Ahora bien, para poder levantar el server, se tiene que ejecutar el comando "npm install", pero tienes que asegurarte de estar 
