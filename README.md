@@ -78,7 +78,9 @@ Una vez ejecutado el comando "npm install", procedemos a ejecutar el siguiente c
 Una vez hechos los pasos anteriores, hay que ir al proyecto de la aplicación, aquí el documento que nos interesa tiene como nombre
 "serviceLoginResponse.kt", está dentro de la carpeta "retrofit".
 
-En este documento, lo que tenemos que cambiar es la parte URL: String = "http://192.168.1.15:3001/movil/" (PARTE A CAMBIAR 192.168.1.15) por tu ip de computadora o laptop.
+En este documento, hay que cambiar dos cosas, la primera es la parte de URL: String = "http://192.168.1.15:3001/movil/"  y la otra
+return hostname == "192.168.1.15", esta se encuentra en override fun verify.
+(PARTE A CAMBIAR EN AMBAS PARTES 192.168.1.15) cambiar por tu ip de computadora o laptop.
 
 En caso de no ocupar emulador de Android Studio, si no que un teléfono, asegurarse que estos estén conectados a la misma red Wi-fi. 
 (como la computadora y el teléfono).
