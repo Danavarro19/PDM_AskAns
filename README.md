@@ -92,7 +92,7 @@ Primero correr el server, después la aplicación móvil.
 
 MÓDULO ADMINISTRATIVO.
 
-Para poder entrar al módulo administrativo, con la url http://localhost:3001/admin/module, pedirá ingresar credenciales.
+Para poder entrar al módulo administrativo, con la url https://localhost:3001/admin/module, pedirá ingresar credenciales.
 
 
 APLICACIÓN MÓVIL.
