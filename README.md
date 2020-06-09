@@ -80,7 +80,6 @@ Una vez hechos los pasos anteriores, hay que ir al proyecto de la aplicación, a
 
 En este documento, hay que cambiar dos cosas, la primera es la parte de URL: String = "http://192.168.1.15:3001/movil/"  y la otra
 return hostname == "192.168.1.15", esta se encuentra en override fun verify.
-
 (PARTE A CAMBIAR EN AMBAS PARTES 192.168.1.15) cambiar por tu ip de computadora o laptop.
 
 En caso de no ocupar emulador de Android Studio, si no que un teléfono, asegurarse que estos estén conectados a la misma red Wi-fi. 
