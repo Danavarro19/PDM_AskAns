@@ -16,5 +16,7 @@
     <dimen name="marginMenuLat">100dp</dimen>
     <dimen name="tam_letra">16sp</dimen>
 
+    <dimen name="tam_letraCrear">18sp</dimen>
+
     <!--Imagen en crear encuesta-->
 </resources>

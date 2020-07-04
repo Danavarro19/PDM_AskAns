@@ -106,6 +106,7 @@ class crearEncuesta : Fragment() {
         crearEncuesta.encuesta.value!!.preguntas.forEach {
             var pregunt = CardView(this.context!!)
             var containerPrincipal = LinearLayout(this.context)
+            pregunt.getBackground().setAlpha(60);
             containerPrincipal.orientation = LinearLayout.VERTICAL
             //encabezado
             var encabezado = EditText(this.context)

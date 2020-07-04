@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/fondo1"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/fondo1">
 
     <data>
 
@@ -20,7 +20,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/averia_sans_libre_light"
             android:hint="@string/inputEncuestaNombre"
+            android:textSize="@dimen/tam_letraCrear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,9 +35,11 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
+            android:fontFamily="@font/averia_sans_libre_light"
             android:gravity="start|top"
             android:hint="@string/inputEncuestaDescripcion"
             android:inputType="textMultiLine"
+            android:textSize="@dimen/tam_letraCrear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +63,8 @@
             android:layout_marginTop="8dp"
 
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/averia_sans_libre_light"
+            android:textSize="@dimen/tam_letraCrear"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/addPregunta"
