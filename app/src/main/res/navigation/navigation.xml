@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragmentResponder"
             app:destination="@id/fragmentResponder" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragmentSearchEncuestas"
+            app:destination="@id/fragmentSearchEncuestas" />
     </fragment>
     <fragment
         android:id="@+id/crearEncuesta"
@@ -53,5 +56,19 @@
         <action
             android:id="@+id/action_fragmentResponder_to_fragment_home"
             app:destination="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragmentResponder_to_fragmentSearchEncuestas"
+            app:destination="@id/fragmentSearchEncuestas" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearchEncuestas"
+        android:name="com.dnavarro.askanswerviews.fragments.fragmentSearchEncuestas"
+        android:label="fragmentSearchEncuestas" >
+        <action
+            android:id="@+id/action_fragmentSearchEncuestas_to_fragment_home"
+            app:destination="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragmentSearchEncuestas_to_fragmentResponder"
+            app:destination="@id/fragmentResponder" />
     </fragment>
 </navigation>

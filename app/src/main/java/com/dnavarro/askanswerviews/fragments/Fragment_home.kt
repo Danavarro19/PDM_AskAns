@@ -2,6 +2,7 @@ package com.dnavarro.askanswerviews.fragments
 
 import android.R.attr.button
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -61,6 +62,12 @@ class Fragment_home : Fragment() {
             }
         })
 
+        binding.bnvMenu.setOnNavigationItemReselectedListener {
+            if(it.itemId == R.id.navEncuestaFragm){
+                this.findNavController().navigate(R.id.action_fragment_home_to_fragmentSearchEncuestas)
+            }
+        }
+
         userModel.ToClearState()
         userModel.Clear()
 
@@ -74,6 +81,7 @@ class Fragment_home : Fragment() {
                     var container = LinearLayout(this.context)
                     container.orientation = LinearLayout.VERTICAL
                     newCarEncuesta.isClickable = true
+                    newCarEncuesta.setContentPadding(0,0,0,15)
                     //newCarEncuesta.setLayoutParams(RelativeLayout.LayoutParams(400, 250))
                     newCarEncuesta.getBackground().setAlpha(51); //-->transparente cardview
                     newCarEncuesta.setOnClickListener {
@@ -84,6 +92,8 @@ class Fragment_home : Fragment() {
                     var titulo = TextView(this.context)
                     titulo.setPadding(20,20,0,3)
                     var tit = "Título: "
+                    titulo.setTextColor(Color.rgb(0,0,0))
+                    titulo.setTextSize(3, 7.5F)
                     titulo.setText(tit + encu.nombre_encuesta)
 
                     var descripcion = TextView(this.context)
@@ -122,13 +132,27 @@ class Fragment_home : Fragment() {
                         userModel.getEncuestaToResolve(encu._id)
                     }
                     btn_contestar.setText("Contestar")
+                    btn_contestar.setTextSize(3, 7.0F)
                     btn_contestar.setLayoutParams(LinearLayout.LayoutParams(160, 75))
 
                     var btn_copiarUrl = Button(this.context)
                     btn_copiarUrl.setText("Compartir")
-                    btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(160, 75))
 
+                    btn_copiarUrl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_share_24, 0, 0, 0);
+                    btn_copiarUrl.setTextColor(Color.BLACK);
+                    btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(75, 75))
                     //btn_copiarUrl.setPadding(0,0,0,50)
+
+                    btn_copiarUrl.setOnClickListener {
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT, "Copia el siguiente Código: " + encu._id + "\nA&A App")
+                            type = "text/plain"
+                        }
+
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+                        startActivity(shareIntent)
+                    }
 
                     btn_eliminar.setOnClickListener {
                         userModel.deleteEncuesta(encu)

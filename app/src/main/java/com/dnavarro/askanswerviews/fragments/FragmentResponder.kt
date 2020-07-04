@@ -30,7 +30,7 @@ class FragmentResponder : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentResponderBinding>(inflater,R.layout.fragment_responder,container,false)
-
+        binding.lifecycleOwner = this
         userModel.resetEnviarRespuesta()
         userModel.respuestaEnviada.observe(viewLifecycleOwner, Observer {
             if(it){
