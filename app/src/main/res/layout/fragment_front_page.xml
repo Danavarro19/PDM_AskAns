@@ -5,67 +5,104 @@
     tools:context=".fragments.FrontPage">
 
     <data>
+
         <variable
             name="userModel"
-            type="com.dnavarro.askanswerviews.viewmodels.Userviewmodel"
-            />
+            type="com.dnavarro.askanswerviews.viewmodels.Userviewmodel" />
     </data>
 
-    <RelativeLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/margin_xwide"
-        >
+        android:background="@drawable/fondo1"
+        android:padding="@dimen/margin_xwide">
 
-        <TextView
-            style="@android:style/Widget.EditText"
-            app:errorMsg="@{userModel.msg}"
-            android:id="@+id/title_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/field_email"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="32dp"
-            android:text="@string/login"
-            android:textSize="@dimen/text_large" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="193dp"
+            android:layout_height="171dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/field_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
+            app:srcCompat="@drawable/logob_removebg_preview" />
 
         <EditText
 
             android:id="@+id/field_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="290dp"
+            android:layout_height="56dp"
+            android:layout_above="@+id/field_password"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/palanquin_dark_medium"
             android:hint="@string/email"
             android:text="@{userModel.mail}"
-            android:layout_above="@+id/field_password"
-            />
+            android:textSize="@dimen/tam_letra"
+            app:layout_constraintBottom_toTopOf="@+id/field_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
-            android:layout_centerVertical="true"
             android:id="@+id/field_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="290dp"
+            android:layout_height="53dp"
+            android:textSize="@dimen/tam_letra"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/palanquin_dark_medium"
             android:hint="@string/password"
             android:text="@{userModel.password}"
-            android:layout_marginBottom="@dimen/margin_wide"/>
+            app:layout_constraintBottom_toTopOf="@+id/button_signin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/button_signin"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/field_password"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/palanquin_dark_medium"
             android:text="@string/login"
-            android:layout_below="@+id/field_password"/>
+            android:textColor="@color/colorFontButtons"
+            android:textSize="@dimen/tam_letra"
+            app:backgroundTint="@color/colorFondoBoton"
+            app:layout_constraintBottom_toTopOf="@+id/button_register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/button_register"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
-            android:text="@string/register"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/field_password"
             android:layout_toEndOf="@+id/button_signin"
-            android:layout_below="@+id/field_password"/>
+            android:cursorVisible="false"
+            android:focusable="auto"
+            android:fontFamily="@font/palanquin_dark_medium"
+            android:text="@string/register"
+            android:textColor="@color/colorFontButtons"
+            android:textSize="@dimen/tam_letra"
+            app:backgroundTint="@color/colorFondoBoton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85" />
 
-
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-
-

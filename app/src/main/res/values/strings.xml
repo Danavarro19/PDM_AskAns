@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Ask&amp;Answer</string>
 
-    <string name="login">Ingresar</string>
+    <string name="login">Iniciar sesión</string>
     <string name="password">Contraseña</string>
     <string name="forgot_password">Olvidaste la contraseña?</string>
     <string name="no_account">No tienes cuenta?</string>
@@ -21,7 +21,8 @@
     <string name="radiopt_masculino">M</string>
     <string name="radiopt_femenino">F</string>
     <string name="radiopt_otro">Otro</string>
-    <string name="field_birthdate">Fecha de nacimiento</string>
+    <string name="field_birthdate">Ingrese fecha</string>
+    <string name="text_birthdate">Fecha de nacimiento</string>
     <string name="field_confirmpassword">Confirme contraseña</string>
     <string name="cancelar">Cancelar</string>
 

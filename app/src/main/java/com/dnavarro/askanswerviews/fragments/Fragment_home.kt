@@ -1,7 +1,9 @@
 package com.dnavarro.askanswerviews.fragments
 
+import android.R.attr.button
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,19 +11,16 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentHomeBinding
 import com.dnavarro.askanswerviews.entity.encuesta
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 /**
  * A simple [Fragment] subclass.
@@ -30,10 +29,12 @@ class Fragment_home : Fragment() {
 
     private val userModel: Userviewmodel by activityViewModels()
 
+    @SuppressLint("ResourceAsColor", "ResourceType", "NewApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //this.activity?.setTitle(R.string.app_name)-->cambiar nombre de fragmento
 
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
             R.layout.fragment_home, container, false)
@@ -63,14 +64,22 @@ class Fragment_home : Fragment() {
                     var container = LinearLayout(this.context)
                     container.orientation = LinearLayout.VERTICAL
                     newCarEncuesta.isClickable = true
+                    //newCarEncuesta.setLayoutParams(RelativeLayout.LayoutParams(400, 250))
+                    newCarEncuesta.getBackground().setAlpha(51); //-->transparente cardview
                     newCarEncuesta.setOnClickListener {
                         //agregar codigo para ir a ver encuesta
                         // ver en tanto Hacer las respuestas en tiempo real
                     }
+
                     var titulo = TextView(this.context)
-                    titulo.setText(encu.nombre_encuesta)
+                    titulo.setPadding(20,20,0,3)
+                    var tit = "Título: "
+                    titulo.setText(tit + encu.nombre_encuesta)
+
                     var descripcion = TextView(this.context)
-                    descripcion.setText(encu.descrip_encuesta)
+                    descripcion.setPadding(20,0,0,5)
+                    var descr = "Descripción: "
+                    descripcion.setText(descr + encu.descrip_encuesta)
 
                     container.addView(titulo)
                     container.addView(descripcion)
@@ -79,9 +88,34 @@ class Fragment_home : Fragment() {
                     containerActions.orientation = LinearLayout.HORIZONTAL
 
                     var btn_eliminar = Button(this.context)
-                    btn_eliminar.setText("delete")
+                    //btn_eliminar.setText("Borrar")
+                    //btn_eliminar.setBackgroundColor(Color.rgb(192,224,231))
+                    btn_eliminar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_delete_24, 0, 0, 0);
+                    btn_eliminar.setTextColor(Color.BLACK);
+                    btn_eliminar.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+
+
                     var btn_editar = Button(this.context)
-                    btn_editar.setText("edit")
+                    //btn_editar.setText("Editar")
+                    btn_editar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_edit_24, 0, 0, 0);
+                    btn_editar.setTextColor(Color.BLACK);
+                    btn_editar.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+
+                    var btn_descarga = Button(this.context)
+                    //btn_descarga.setText("Descarga")
+                    btn_descarga.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_save_alt_24, 0, 0, 0);
+                    btn_descarga.setTextColor(Color.BLACK);
+                    btn_descarga.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+
+                    var btn_contestar = Button(this.context)
+                    btn_contestar.setText("Contestar")
+                    btn_contestar.setLayoutParams(LinearLayout.LayoutParams(160, 75))
+
+                    var btn_copiarUrl = Button(this.context)
+                    btn_copiarUrl.setText("Compartir")
+                    btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(160, 75))
+
+                    //btn_copiarUrl.setPadding(0,0,0,50)
 
                     btn_eliminar.setOnClickListener {
                         userModel.deleteEncuesta(encu)
@@ -95,6 +129,9 @@ class Fragment_home : Fragment() {
 
                     containerActions.addView(btn_editar)
                     containerActions.addView(btn_eliminar)
+                    containerActions.addView(btn_descarga)
+                    containerActions.addView(btn_copiarUrl)
+                    containerActions.addView(btn_contestar)
 
                     container.addView(containerActions)
                     newCarEncuesta.addView(container)
