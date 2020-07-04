@@ -2,13 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/fondo1"
     tools:context=".fragments.Register">
 
     <data>
+
         <variable
             name="RegisterModel"
-            type="com.dnavarro.askanswerviews.viewmodels.RegisterViewModel"
-            />
+            type="com.dnavarro.askanswerviews.viewmodels.RegisterViewModel" />
     </data>
 
     <ScrollView
@@ -27,7 +28,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_wide"
+                android:fontFamily="@font/palanquin_dark_medium"
                 android:text="@string/register"
+                android:textColor="#776E6E"
                 android:textSize="@dimen/text_large" />
 
             <EditText
@@ -36,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_register"
                 android:layout_marginBottom="@dimen/margin_medium"
+                android:fontFamily="@font/palanquin_dark_medium"
                 android:hint="@string/name" />
 
             <EditText
@@ -44,15 +48,31 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_name"
                 android:layout_marginBottom="@dimen/margin_medium"
+                android:fontFamily="@font/palanquin_dark_medium"
                 android:hint="@string/last_name" />
+
+            <TextView
+                android:id="@+id/field_nacimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_lastname"
+                android:layout_marginTop="@dimen/margin_wide"
+                android:layout_marginEnd="@dimen/margin_wide"
+                android:layout_marginBottom="@dimen/margin_wide"
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/text_birthdate"
+                android:textSize="@dimen/tam_letra" />
 
             <TextView
                 android:id="@+id/field_birthdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/field_nacimiento"
                 android:layout_below="@+id/field_lastname"
                 android:layout_marginTop="@dimen/margin_wide"
                 android:layout_marginBottom="@dimen/margin_wide"
+                android:gravity="center"
+                android:fontFamily="@font/palanquin_dark_medium"
                 android:hint="@string/field_birthdate" />
 
 
@@ -70,7 +90,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_wide"
                     android:layout_weight="1"
-                    android:hint="@string/sex" />
+                    android:fontFamily="@font/palanquin_dark_medium"
+                    android:hint="@string/sex"
+                    android:textSize="@dimen/tam_letra" />
 
                 <RadioButton
                     android:id="@+id/radiopt_m"
@@ -79,6 +101,7 @@
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:layout_weight="2"
                     android:checked="true"
+                    android:fontFamily="@font/palanquin_dark_medium"
                     android:text="@string/radiopt_masculino" />
 
                 <RadioButton
@@ -87,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:layout_weight="2"
+                    android:fontFamily="@font/palanquin_dark_medium"
                     android:text="@string/radiopt_femenino" />
 
                 <RadioButton
@@ -95,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:layout_weight="2"
+                    android:fontFamily="@font/palanquin_dark_medium"
                     android:text="@string/radiopt_otro" />
 
             </RadioGroup>
@@ -106,7 +131,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_sex"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/document" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/document"
+                android:textSize="@dimen/tam_letra" />
 
             <TextView
                 android:id="@+id/field_country"
@@ -116,9 +143,10 @@
                 android:layout_marginTop="@dimen/margin_wide"
                 android:layout_marginEnd="@dimen/margin_wide"
                 android:layout_marginBottom="@dimen/margin_wide"
+                android:fontFamily="@font/palanquin_dark_medium"
                 android:hint="@string/country"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="@dimen/tam_letra" />
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/picker_country"
@@ -140,7 +168,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/field_country"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/city" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/city"
+                android:textSize="@dimen/tam_letra" />
 
             <EditText
                 android:id="@+id/field_email"
@@ -150,7 +180,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/email" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/email"
+                android:textSize="@dimen/tam_letra" />
 
             <EditText
                 android:id="@+id/field_altura"
@@ -159,7 +191,9 @@
                 android:layout_below="@+id/field_email"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/altura" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/altura"
+                android:textSize="@dimen/tam_letra" />
 
             <EditText
                 android:id="@+id/field_peso"
@@ -168,7 +202,9 @@
                 android:layout_below="@+id/field_altura"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/peso" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/peso"
+                android:textSize="@dimen/tam_letra" />
 
             <EditText
                 android:id="@+id/field_password"
@@ -177,7 +213,9 @@
                 android:layout_below="@+id/field_peso"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/password" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/password"
+                android:textSize="@dimen/tam_letra" />
 
             <EditText
                 android:id="@+id/field_confirmpassword"
@@ -186,7 +224,9 @@
                 android:layout_below="@+id/field_password"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:hint="@string/field_confirmpassword" />
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:hint="@string/field_confirmpassword"
+                android:textSize="@dimen/tam_letra" />
 
             <Spinner
                 android:id="@+id/spinner_preferences"
@@ -207,55 +247,70 @@
 
                 <EditText
                     android:id="@+id/add_chip"
-                    android:layout_weight="9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:hint="@string/tag" />
+                    android:layout_weight="9"
+                    android:fontFamily="@font/palanquin_dark_medium"
+                    android:hint="@string/tag"
+                    android:textSize="@dimen/tam_letra" />
 
                 <Button
                     android:id="@+id/add_chip_btn"
-                    android:layout_width="68dp"
-                    android:layout_height="match_parent"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_wide"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="ADD" />
+                    android:fontFamily="@font/palanquin_dark_medium"
+                    android:gravity="right"
+                    android:text="+"
+                    android:textColor="#E32020"
+                    android:textSize="25sp" />
 
             </LinearLayout>
 
             <com.google.android.material.chip.ChipGroup
-                android:layout_marginTop="24dp"
-                app:List="@{RegisterModel.tags}"
                 android:id="@+id/list_tags"
                 style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:textSize="@dimen/tam_letra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lineaAdd"
-
-                >
-
-
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:List="@{RegisterModel.tags}">
 
             </com.google.android.material.chip.ChipGroup>
 
+
             <Button
                 android:id="@+id/button_register"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/list_tags"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_wide"
-                android:text="@string/register" />
+                android:layout_marginTop="-7dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:text="@string/register"
+                android:textSize="@dimen/tam_letra"
+                app:backgroundTint="#2699FB" />
 
             <Button
                 android:id="@+id/button_cancel"
-                android:layout_width="wrap_content"
+                android:layout_width="522dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/list_tags"
-                android:layout_marginTop="@dimen/margin_wide"
-                android:layout_toStartOf="@+id/button_register"
-                android:text="@string/cancelar" />
+                android:layout_below="@+id/button_register"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/palanquin_dark_medium"
+                android:text="@string/cancelar"
+                android:textSize="@dimen/tam_letra"
+                app:backgroundTint="#2699FB" />
 
         </RelativeLayout>
     </ScrollView>
