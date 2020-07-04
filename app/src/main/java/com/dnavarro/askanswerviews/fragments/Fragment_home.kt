@@ -2,6 +2,7 @@ package com.dnavarro.askanswerviews.fragments
 
 import android.R.attr.button
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -61,6 +62,12 @@ class Fragment_home : Fragment() {
             }
         })
 
+        binding.bnvMenu.setOnNavigationItemReselectedListener {
+            if(it.itemId == R.id.navEncuestaFragm){
+                this.findNavController().navigate(R.id.action_fragment_home_to_fragmentSearchEncuestas)
+            }
+        }
+
         userModel.ToClearState()
         userModel.Clear()
 
@@ -75,28 +82,26 @@ class Fragment_home : Fragment() {
                     container.orientation = LinearLayout.VERTICAL
                     newCarEncuesta.isClickable = true
                     newCarEncuesta.setContentPadding(0,0,0,15)
-                    //newCarEncuesta.setCardBackgroundColor(Color.rgb(240,165,189))
                     //newCarEncuesta.setLayoutParams(RelativeLayout.LayoutParams(400, 250))
-                    newCarEncuesta.getBackground().setAlpha(60); //-->transparente cardview
+                    newCarEncuesta.getBackground().setAlpha(51); //-->transparente cardview
                     newCarEncuesta.setOnClickListener {
                         //agregar codigo para ir a ver encuesta
                         // ver en tanto Hacer las respuestas en tiempo real
                     }
 
                     var titulo = TextView(this.context)
-                    titulo.setTextColor(Color.rgb(0,0,0))
-                    titulo.setTextSize(3, 7.5F)
                     titulo.setPadding(20,20,0,3)
                     var tit = "Título: "
+                    titulo.setTextColor(Color.rgb(0,0,0))
+                    titulo.setTextSize(3, 7.5F)
                     titulo.setText(tit + encu.nombre_encuesta)
-                    container.addView(titulo)
 
                     var descripcion = TextView(this.context)
-                    descripcion.setTextSize(3, 7.5F)
-                    descripcion.setTextColor(Color.rgb(0,0,0))
                     descripcion.setPadding(20,0,0,5)
                     var descr = "Descripción: "
                     descripcion.setText(descr + encu.descrip_encuesta)
+
+                    container.addView(titulo)
                     container.addView(descripcion)
 
                     var containerActions = LinearLayout(this.context)
@@ -108,9 +113,6 @@ class Fragment_home : Fragment() {
                     btn_eliminar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_delete_24, 0, 0, 0);
                     btn_eliminar.setTextColor(Color.BLACK);
                     btn_eliminar.setLayoutParams(LinearLayout.LayoutParams(75, 75))
-                    btn_eliminar.setOnClickListener {
-                        userModel.deleteEncuesta(encu)
-                    }
 
 
                     var btn_editar = Button(this.context)
@@ -118,12 +120,6 @@ class Fragment_home : Fragment() {
                     btn_editar.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_edit_24, 0, 0, 0);
                     btn_editar.setTextColor(Color.BLACK);
                     btn_editar.setLayoutParams(LinearLayout.LayoutParams(75, 75))
-                    btn_editar.setOnClickListener {
-                        userModel.ToUpdateState()
-                        userModel.Edit(encu)
-                        this.findNavController().navigate(R.id.action_fragment_home_to_crearEncuesta)
-                    }
-
 
                     var btn_descarga = Button(this.context)
                     //btn_descarga.setText("Descarga")
@@ -131,20 +127,41 @@ class Fragment_home : Fragment() {
                     btn_descarga.setTextColor(Color.BLACK);
                     btn_descarga.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 
-
-                    var btn_copiarUrl = Button(this.context)
-                    //btn_copiarUrl.setText("Compartir")
-                    btn_copiarUrl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_share_24, 0, 0, 0);
-                    btn_copiarUrl.setTextColor(Color.BLACK);
-                    btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(75, 75))
-
-
                     var btn_contestar = Button(this.context)
+                    btn_contestar.setOnClickListener {v->
+                        userModel.getEncuestaToResolve(encu._id)
+                    }
                     btn_contestar.setText("Contestar")
                     btn_contestar.setTextSize(3, 7.0F)
                     btn_contestar.setLayoutParams(LinearLayout.LayoutParams(160, 75))
-                    btn_contestar.setOnClickListener {v->
-                        userModel.getEncuestaToResolve(encu._id)
+
+                    var btn_copiarUrl = Button(this.context)
+                    btn_copiarUrl.setText("Compartir")
+
+                    btn_copiarUrl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_share_24, 0, 0, 0);
+                    btn_copiarUrl.setTextColor(Color.BLACK);
+                    btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+                    //btn_copiarUrl.setPadding(0,0,0,50)
+
+                    btn_copiarUrl.setOnClickListener {
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT, "Copia el siguiente Código: " + encu._id + "\nA&A App")
+                            type = "text/plain"
+                        }
+
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+                        startActivity(shareIntent)
+                    }
+
+                    btn_eliminar.setOnClickListener {
+                        userModel.deleteEncuesta(encu)
+                    }
+
+                    btn_editar.setOnClickListener {
+                        userModel.ToUpdateState()
+                        userModel.Edit(encu)
+                        this.findNavController().navigate(R.id.action_fragment_home_to_crearEncuesta)
                     }
 
                     containerActions.addView(btn_editar)
