@@ -12,8 +12,9 @@ class Userviewmodel: ViewModel() {
 
     val UpdateOrCreated = userRepo.CreadoOActualizado
     val listaEncuesta: LiveData<MutableCollection<encuesta>> = userRepo.encuestas
-    val respuestaEnviada = userRepo.respuestaEnviada
-    val encuestaToResolve = userRepo.encuestaToResolve
+    val respuestaEnviada: LiveData<Boolean> = userRepo.respuestaEnviada
+    val encuestaToResolve: LiveData<encuesta> = userRepo.encuestaToResolve
+    val listoParaEnviar: LiveData<Boolean> = userRepo.listoParaResponder
 
     private val _mail = MutableLiveData<String>()
     val pass: LiveData<Boolean> = userRepo.pass
@@ -43,6 +44,14 @@ class Userviewmodel: ViewModel() {
 
     fun deleteEncuesta(encuesta: encuesta){
         userRepo.deleteEncuesta(encuesta)
+    }
+
+    fun resetListoParaEnviar(){
+        userRepo.resetListoParaEnviar()
+    }
+
+    fun getEncuestaToResolve(id: String){
+        userRepo.getEncuestaToResolve(id)
     }
 
     init {

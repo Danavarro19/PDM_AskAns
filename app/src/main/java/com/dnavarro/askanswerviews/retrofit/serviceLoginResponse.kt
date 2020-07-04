@@ -31,7 +31,8 @@ import javax.net.ssl.*
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val URL: String = "https://192.168.1.11:3001/movil/"
+    private const val IP: String = "192.168.1.6"
+    private const val URL: String = "https://"+ IP + ":3001/movil/"
     private lateinit var context: Application
 
 
@@ -45,7 +46,7 @@ object serviceLoginResponse {
             override fun verify(hostname: String?, session: SSLSession?): Boolean {
                 println("hostName: $hostname")
                 println("session: $session")
-                return hostname == "192.168.1.11"
+                return hostname == IP
             }
         }
 

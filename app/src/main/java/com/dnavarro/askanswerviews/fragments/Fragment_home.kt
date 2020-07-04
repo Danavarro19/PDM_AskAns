@@ -41,6 +41,7 @@ class Fragment_home : Fragment() {
         binding.lifecycleOwner = this
         userModel.resetUpdateOrCreate()
         userModel.updateEncuestas()
+        userModel.resetListoParaEnviar()
         userModel.pass.observe(viewLifecycleOwner, Observer {
             if(it){
                 println("es verdadero")
@@ -48,6 +49,15 @@ class Fragment_home : Fragment() {
             }else{
                 println("no es verdadero" + it)
                 this.findNavController().navigate(R.id.frontPage)
+            }
+        })
+
+        userModel.listoParaEnviar.observe(viewLifecycleOwner, Observer {
+            if(it){
+                println("listo para enviar: ")
+                this.findNavController().navigate(R.id.action_fragment_home_to_fragmentResponder)
+            }else{
+
             }
         })
 
@@ -108,6 +118,9 @@ class Fragment_home : Fragment() {
                     btn_descarga.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 
                     var btn_contestar = Button(this.context)
+                    btn_contestar.setOnClickListener {v->
+                        userModel.getEncuestaToResolve(encu._id)
+                    }
                     btn_contestar.setText("Contestar")
                     btn_contestar.setLayoutParams(LinearLayout.LayoutParams(160, 75))
 

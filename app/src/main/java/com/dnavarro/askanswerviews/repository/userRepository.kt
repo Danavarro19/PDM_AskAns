@@ -17,6 +17,9 @@ class UserRepository {
     private val _respuestaEnviada = MutableLiveData<Boolean>()
     val respuestaEnviada: LiveData<Boolean> get() = _respuestaEnviada
 
+    private val _listoParaResponder = MutableLiveData<Boolean>()
+    val listoParaResponder: LiveData<Boolean> get() = _listoParaResponder
+
     //encuestas
     private val _encuestas = MutableLiveData<MutableCollection<encuesta>>()
     val encuestas: LiveData<MutableCollection<encuesta>> get() = _encuestas
@@ -32,6 +35,7 @@ class UserRepository {
     init { //implementar cookie session
 
         session()
+        _listoParaResponder.value = false
         _pass.value = false
         _register.value = false
         _encuestas.value = mutableSetOf<encuesta>()
@@ -45,6 +49,9 @@ class UserRepository {
         _respuestaEnviada.value = false
     }
 
+    fun resetListoParaEnviar(){
+        _listoParaResponder.value = false
+    }
 
     fun session(){
         val request = serviceLoginResponse.buildService(sessionInterface::class.java)
@@ -181,6 +188,7 @@ class UserRepository {
                     result = response.body()!!.correct
 
                     if(result){
+                        _listoParaResponder.value = true
                        _encuestasToResolve.value = response.body()!!.encuestas.first()
                         println("encuesta a resolver: " + encuestaToResolve.value)
 
