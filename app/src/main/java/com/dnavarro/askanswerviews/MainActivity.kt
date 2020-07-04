@@ -29,20 +29,22 @@ class MainActivity : AppCompatActivity() {
 
 
         val navController = this.findNavController(R.id.myNavHostFragment)
+        navController.addOnDestinationChangedListener{ _,destination,_ ->
+            println(destination.id)
+            when (destination.id){
 
+//                R.id.action_register_to_fragment_home -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+//                R.id.action_frontPage_to_fragment_home -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+//                R.id.action_frontPage_to_register -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            }
+        }
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
-//        navController.addOnDestinationChangedListener{ _,destination,_ ->
-//                when (destination.id){
-//                    R.id.action_register_to_fragment_home -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
-//                    R.id.action_frontPage_to_fragment_home -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
-//                    R.id.action_frontPage_to_register -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-//                }
-//        }
+
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 }

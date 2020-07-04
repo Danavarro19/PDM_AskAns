@@ -14,9 +14,16 @@ class UserRepository {
     private val _CreadoOActualizado = MutableLiveData<Boolean>()
     val CreadoOActualizado: LiveData<Boolean> get() = _CreadoOActualizado
 
+    private val _respuestaEnviada = MutableLiveData<Boolean>()
+    val respuestaEnviada: LiveData<Boolean> get() = _respuestaEnviada
+
     //encuestas
     private val _encuestas = MutableLiveData<MutableCollection<encuesta>>()
     val encuestas: LiveData<MutableCollection<encuesta>> get() = _encuestas
+
+    private val _encuestasToResolve = MutableLiveData<encuesta>()
+    val encuestaToResolve: LiveData<encuesta> get() = _encuestasToResolve
+
     private val _pass = MutableLiveData<Boolean>()
     //validacion
     val pass: LiveData<Boolean> get() =  _pass
@@ -32,6 +39,10 @@ class UserRepository {
 
     fun resetCreateUpdate(){
         _CreadoOActualizado.value = false
+    }
+
+    fun reseteEncuestaenviada(){
+        _respuestaEnviada.value = false
     }
 
 
@@ -157,6 +168,68 @@ class UserRepository {
 
             })
         }
+    }
+
+    fun getEncuestaToResolve(id: String){
+        val request = serviceLoginResponse.buildService(encuestaToresponseInterface::class.java)
+        val call = request.getEncuestaToResolve(id)
+        var result: Boolean = false
+        call.enqueue(object: Callback<encuestasResponse>{
+            override fun onResponse(call: Call<encuestasResponse>, response: Response<encuestasResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.body()}")
+                    result = response.body()!!.correct
+
+                    if(result){
+                       _encuestasToResolve.value = response.body()!!.encuestas.first()
+                        println("encuesta a resolver: " + encuestaToResolve.value)
+
+                    }
+                    println("Result $result")
+                }else{
+
+                    result = false
+
+                }
+
+            }
+            override fun onFailure(call: Call<encuestasResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+    }
+
+    fun makeAnAnswer(respuestas: respuestas){
+        val request = serviceLoginResponse.buildService(respuestaInterface::class.java)
+        val call = request.responder(respuestas)
+        var result: Boolean = false
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.body()}")
+                    result = response.body()!!.correct
+
+                    if(result){
+                        _respuestaEnviada.value = result
+                        println("se respondio la encuesta ")
+
+                    }
+                    println("Result $result")
+                }else{
+
+                    result = false
+                    _respuestaEnviada.value = result
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
     }
 
 

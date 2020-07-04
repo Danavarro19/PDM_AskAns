@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dnavarro.askanswerviews.entity.encuesta
+import com.dnavarro.askanswerviews.entity.respuestas
 import com.dnavarro.askanswerviews.repository.UserRepository
 import java.lang.Exception
 class Userviewmodel: ViewModel() {
@@ -11,6 +12,9 @@ class Userviewmodel: ViewModel() {
 
     val UpdateOrCreated = userRepo.CreadoOActualizado
     val listaEncuesta: LiveData<MutableCollection<encuesta>> = userRepo.encuestas
+    val respuestaEnviada = userRepo.respuestaEnviada
+    val encuestaToResolve = userRepo.encuestaToResolve
+
     private val _mail = MutableLiveData<String>()
     val pass: LiveData<Boolean> = userRepo.pass
     val mail: LiveData<String> get() = _mail
@@ -46,6 +50,14 @@ class Userviewmodel: ViewModel() {
         _password.value = ""
         _msg.value = ""
         _estado.value = "None"
+    }
+
+    fun resetEnviarRespuesta(){
+        userRepo.reseteEncuestaenviada()
+    }
+
+    fun makeAnswer(resp: respuestas){
+        userRepo.makeAnAnswer(resp)
     }
 
     fun createOrUpdate(encuesta: encuesta){
