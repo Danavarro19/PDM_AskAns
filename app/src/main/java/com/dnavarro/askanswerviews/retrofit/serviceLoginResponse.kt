@@ -31,7 +31,7 @@ import javax.net.ssl.*
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val IP: String = "192.168.1.12"
+    private const val IP: String = "192.168.1.6"
     private const val URL: String = "https://"+ IP + ":3001/movil/"
     private lateinit var context: Application
 

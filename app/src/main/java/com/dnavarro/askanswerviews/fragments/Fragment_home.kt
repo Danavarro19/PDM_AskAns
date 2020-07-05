@@ -63,6 +63,7 @@ class Fragment_home : Fragment() {
         })
 
         binding.bnvMenu.setOnNavigationItemReselectedListener {
+
             if(it.itemId == R.id.navEncuestaFragm){
                 this.findNavController().navigate(R.id.action_fragment_home_to_fragmentSearchEncuestas)
             }

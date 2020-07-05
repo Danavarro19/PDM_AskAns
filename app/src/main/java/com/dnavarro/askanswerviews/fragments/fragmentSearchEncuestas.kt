@@ -26,6 +26,14 @@ class fragmentSearchEncuestas: Fragment() {
             R.layout.fragment_search_encuesta,container,false)
         binding.lifecycleOwner = this
         userModel.resetListoParaEnviar()
+        binding.bnvMenuS.selectedItemId = R.id.navEncuestaFragm
+        binding.bnvMenuS.setOnNavigationItemReselectedListener {
+
+            if(it.itemId == R.id.navHomeFragment){
+                this.findNavController().navigate(R.id.action_fragmentSearchEncuestas_to_fragment_home)
+            }
+        }
+
         userModel.listoParaEnviar.observe(viewLifecycleOwner, Observer {
             if(it){
                 println("listo para enviar: ")
