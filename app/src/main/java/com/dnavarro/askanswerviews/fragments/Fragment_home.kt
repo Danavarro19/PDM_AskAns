@@ -96,6 +96,7 @@ class Fragment_home : Fragment() {
                     titulo.setTextSize(3, 7.5F)
                     titulo.setText(tit + encu.nombre_encuesta)
 
+
                     var descripcion = TextView(this.context)
                     descripcion.setPadding(20,0,0,5)
                     var descr = "Descripción: "

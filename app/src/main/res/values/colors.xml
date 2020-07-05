@@ -11,4 +11,5 @@
     <color name="colorFondoBoton">#FFFFFF</color>
 
     <color name="colorBorderImage">#ECB1B1</color>
+    <color name="colorRed">#FF0F0F</color>
 </resources>

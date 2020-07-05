@@ -1,27 +1,28 @@
 package com.dnavarro.askanswerviews.fragments
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import com.dnavarro.askanswerviews.R
+import com.dnavarro.askanswerviews.R.font
 import com.dnavarro.askanswerviews.databinding.FragmentCrearEncuestaBinding
 import com.dnavarro.askanswerviews.entity.opcion
 import com.dnavarro.askanswerviews.entity.pregunta
 import com.dnavarro.askanswerviews.viewmodels.CrearEncuestaViewModel
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
-import com.google.android.material.chip.ChipGroup
-import org.w3c.dom.Text
 
 
 /**
@@ -106,12 +107,17 @@ class crearEncuesta : Fragment() {
         crearEncuesta.encuesta.value!!.preguntas.forEach {
             var pregunt = CardView(this.context!!)
             var containerPrincipal = LinearLayout(this.context)
-            pregunt.getBackground().setAlpha(60);
+            //setCardBackgroundColor(Color.rgb(192,224,231))
+            //getBackground().setAlpha(60);
+            //pregunt.setBackgroundColor(Color.rgb(192,224,231))
+            pregunt.setCardBackgroundColor(Color.TRANSPARENT);
+            pregunt.setCardElevation(0F);
             containerPrincipal.orientation = LinearLayout.VERTICAL
             //encabezado
             var encabezado = EditText(this.context)
             encabezado.setText(it.encabezado)
             encabezado.addTextChangedListener(object: TextWatcher{
+
                 override fun afterTextChanged(p0: Editable) {
                     it.encabezado = p0.toString()
                 }
@@ -246,12 +252,21 @@ class crearEncuesta : Fragment() {
                 mutableListOf())
             crearEncuesta.encuesta.value!!.preguntas.add(newPregunta)
             var pregunt = CardView(this.context!!)
+            pregunt.getBackground().setAlpha(51)
+            pregunt.setContentPadding(0,15,0,15)
+
             var containerPrincipal = LinearLayout(this.context)
             containerPrincipal.orientation = LinearLayout.VERTICAL
 
             //encabezado
             var encabezado = EditText(this.context)
-            encabezado.hint = "Titulo pregunta"
+            encabezado.hint = "Título de la pregunta"
+            //val font = Typeface.createFromAsset()
+            //encabezado.typeface = Typeface.
+            //encabezado.typeface = Typeface.createFromAsset(activity!!.assets, "fonts/averia_sans_libre_ligth.xml")
+            //val typeface = ResourcesCompat.getFont(this, font.averia_sans_libre_light)
+            //encabezado.setTypeface(typeface)
+            encabezado.setTextSize(3, 8.5F)
             encabezado.addTextChangedListener(object: TextWatcher{
                 override fun afterTextChanged(p0: Editable) {
                     println("element at:" + crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
@@ -266,12 +281,23 @@ class crearEncuesta : Fragment() {
 
             containerPrincipal.addView(encabezado)
             var deletePregunta = Button(this.context)
-            deletePregunta.setText("-")
+            //deletePregunta.setText("-")
+            deletePregunta.setTextSize(3, 8.5F)
+            deletePregunta.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+            deletePregunta.getBackground().setAlpha(0);
+            deletePregunta.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_remove_circle_outline_24, 0, 0, 0);
+            deletePregunta.setTextColor(Color.RED);
+            //deletePregunta.setLayoutParams(LinearLayout.LayoutParams(75, 200))
+            //deletePregunta.setBackgroundColor(Color.rgb(38,153,251))
+            //deletePregunta.setBackgroundResource(Color.rgb(38,153,251))
+            //setTextColor(Color.rgb(38,153,251))
             containerPrincipal.addView(deletePregunta)
 
 
-            var pregunta_abierta = RadioButton(this.context)
+
+            var pregunta_abierta = CheckBox(this.context)
             pregunta_abierta.setText("Pregunta Abierta")
+            pregunta_abierta.setTextSize(3, 7.5F)
             pregunta_abierta.isChecked = newPregunta.pregunta_abierta
             pregunta_abierta.setOnClickListener { view ->
                 crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).pregunta_abierta = pregunta_abierta.isChecked
@@ -281,8 +307,9 @@ class crearEncuesta : Fragment() {
             }
             containerPrincipal.addView(pregunta_abierta)
 
-            var multi_respuesta = RadioButton(this.context)
+            var multi_respuesta = CheckBox(this.context)
             multi_respuesta.setText("Multi Respuestas")
+            multi_respuesta.setTextSize(3, 7.5F)
             multi_respuesta.isChecked = newPregunta.multi_respuesta
             multi_respuesta.setOnClickListener { view ->
                 crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).multi_respuesta = multi_respuesta.isChecked
@@ -291,8 +318,9 @@ class crearEncuesta : Fragment() {
             }
             containerPrincipal.addView(multi_respuesta)
 
-            var requiere = RadioButton(this.context)
-            requiere.setText("Obligatoria")
+            var requiere = CheckBox(this.context)
+            requiere.setText("Respuesta obligatoria")
+            requiere.setTextSize(3, 7.5F)
             requiere.isChecked = newPregunta.requiere
             requiere.setOnClickListener { view ->
                 crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).requiere = requiere.isChecked
@@ -304,9 +332,16 @@ class crearEncuesta : Fragment() {
             var contenedorCreateOpciones = LinearLayout(this.context)
             contenedorCreateOpciones.orientation = LinearLayout.HORIZONTAL
             var listaOpciones = EditText(this.context)
-            listaOpciones.hint = "Ingresa Texto Opcion"
+            listaOpciones.hint = "Ingresar texto opción    "
+            listaOpciones.setTextSize(3, 8.5F)
+
             var btn_addOption = Button(this.context)
-            btn_addOption.setText("+")
+            //btn_addOption.setText("+")
+            btn_addOption.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_add_circle_outline_24, 0, 0, 0)
+            btn_addOption.setTextColor(Color.RED)
+            btn_addOption.getBackground().setAlpha(0)
+            btn_addOption.setTextSize(3, 8.5F)
+            btn_addOption.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 
             contenedorCreateOpciones.addView(listaOpciones)
             contenedorCreateOpciones.addView(btn_addOption)
@@ -345,7 +380,12 @@ class crearEncuesta : Fragment() {
 
                 listaOpciones.setText("")
                 var btnDeleteOpcion = Button(this.context)
-                btnDeleteOpcion.setText("-")
+                //btnDeleteOpcion.setText("-")
+                btnDeleteOpcion.setTextSize(3, 8.5F)
+                btnDeleteOpcion.setLayoutParams(LinearLayout.LayoutParams(75, 75))
+                btnDeleteOpcion.getBackground().setAlpha(0);
+                btnDeleteOpcion.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_remove_circle_outline_24, 0, 0, 0);
+                btnDeleteOpcion.setTextColor(Color.RED);
 
                 btnDeleteOpcion.setOnClickListener { view ->
                     crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
