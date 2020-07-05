@@ -49,6 +49,9 @@ class FragmentResponder : Fragment() {
 
 
             var newCardPregunta = CardView(this.context!!)
+            newCardPregunta.getBackground().setAlpha(0)
+            newCardPregunta.setContentPadding(0,15,0,15)
+            newCardPregunta.setCardElevation(0F)
             var container = LinearLayout(this.context)
             container.orientation = LinearLayout.VERTICAL
             newCardPregunta.isClickable = false
@@ -58,9 +61,11 @@ class FragmentResponder : Fragment() {
                     var resp = respuesta(it.encabezado,"","")
                     respuesta.respuesta.add(resp)
                     var titulo = TextView(this.context)
+                    titulo.setTextSize(3, 10.0F)
                     titulo.text = it.encabezado
                     var respuestae = EditText(this.context)
                     respuestae.hint = "Escribe tu respuesta"
+                    respuestae.setTextSize(3, 8.5F)
                     respuestae.addTextChangedListener(object: TextWatcher {
                         override fun afterTextChanged(s: Editable?) {
                             resp.id_respuesta = "none"

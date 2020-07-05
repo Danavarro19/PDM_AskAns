@@ -8,11 +8,11 @@
     <item
         android:id="@+id/navEncuestaFragm"
         android:icon="@drawable/ic_list_black_24dp"
-        android:title="Lista encuestas" />
+        android:title="Resolver encuesta" />
 
     <item
         android:id="@+id/navEnvioFragm"
         android:icon="@drawable/ic_send_black_24dp"
-        android:title="Envíos" />
+        android:title="Encuestas enviadas" />
 
 </menu>

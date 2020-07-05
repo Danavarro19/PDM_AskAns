@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,7 +100,9 @@ class Fragment_home : Fragment() {
 
 
                     var descripcion = TextView(this.context)
+                    descripcion.setTextSize(3, 7.5F)
                     descripcion.setPadding(20,0,0,5)
+                    descripcion.setTextColor(Color.rgb(0,0,0))
                     var descr = "Descripción: "
                     descripcion.setText(descr + encu.descrip_encuesta)
 
@@ -126,20 +129,20 @@ class Fragment_home : Fragment() {
                     var btn_descarga = Button(this.context)
                     //btn_descarga.setText("Descarga")
                     btn_descarga.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_save_alt_24, 0, 0, 0);
+                    btn_descarga.setGravity(Gravity.END);
                     btn_descarga.setTextColor(Color.BLACK);
                     btn_descarga.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 
                     var btn_contestar = Button(this.context)
+                    btn_contestar.setText("Contestar")
+                    btn_contestar.setTextSize(3, 7.0F)
+                    btn_contestar.setLayoutParams(LinearLayout.LayoutParams(190, 75))
                     btn_contestar.setOnClickListener {v->
                         userModel.getEncuestaToResolve(encu._id)
                     }
-                    btn_contestar.setText("Contestar")
-                    btn_contestar.setTextSize(3, 7.0F)
-                    btn_contestar.setLayoutParams(LinearLayout.LayoutParams(160, 75))
 
                     var btn_copiarUrl = Button(this.context)
-                    btn_copiarUrl.setText("Compartir")
-
+                    //btn_copiarUrl.setText("Compartir")
                     btn_copiarUrl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_share_24, 0, 0, 0);
                     btn_copiarUrl.setTextColor(Color.BLACK);
                     btn_copiarUrl.setLayoutParams(LinearLayout.LayoutParams(75, 75))
