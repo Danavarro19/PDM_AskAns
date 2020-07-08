@@ -61,7 +61,7 @@ class RegisterViewModel: ViewModel() {
         _document.value = ""
         _peso.value = 0f
         _city.value = ""
-        _sex.value = ""
+        _sex.value = "M"
         _tags.value = mutableListOf<String>()
     }
 

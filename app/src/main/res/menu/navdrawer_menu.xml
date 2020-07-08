@@ -6,18 +6,12 @@
             android:id="@+id/cuenta"
             android:icon="@drawable/ic_baseline_account_circle_24"
             android:title="@string/cuenta" />
-        <item
-            android:id="@+id/notificaciones"
-            android:icon="@drawable/ic_baseline_notifications_24"
-            android:title="@string/notificaciones" />
+
         <item
             android:id="@+id/pagos"
             android:icon="@drawable/ic_baseline_payment_24"
             android:title="@string/pagos" />
-        <item
-            android:id="@+id/carrito"
-            android:icon="@drawable/ic_baseline_shopping_cart_24"
-            android:title="@string/carrito" />
+
         <item
             android:id="@+id/saldo"
             android:icon="@drawable/ic_baseline_monetization_on_24"

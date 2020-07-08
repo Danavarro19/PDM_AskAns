@@ -26,11 +26,27 @@ class fragmentSearchEncuestas: Fragment() {
             R.layout.fragment_search_encuesta,container,false)
         binding.lifecycleOwner = this
         userModel.resetListoParaEnviar()
+        userModel.resetLanzamientos()
         binding.bnvMenuS.selectedItemId = R.id.navEncuestaFragm
-        binding.bnvMenuS.setOnNavigationItemReselectedListener {
 
-            if(it.itemId == R.id.navHomeFragment){
-                this.findNavController().navigate(R.id.action_fragmentSearchEncuestas_to_fragment_home)
+        userModel.lanzamientosObtenidos.observe(viewLifecycleOwner, Observer {
+            if(it){
+                this.findNavController().navigate(R.id.action_fragmentSearchEncuestas_to_fragment_lanzamientos)
+            }else{
+
+            }
+        })
+        binding.bnvMenuS.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.navEnvioFragm -> {
+                    userModel.getLanzamientos()
+                    true
+                }
+                R.id.navHomeFragment ->{
+                    this.findNavController().navigate(R.id.action_fragmentSearchEncuestas_to_fragment_home)
+                    true
+                }
+                else -> true
             }
         }
 

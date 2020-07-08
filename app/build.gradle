@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.dnavarro.askanswerviews"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -69,6 +69,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     //Country picker
     implementation 'com.hbb20:ccp:2.3.9'
+
+    //stripe payments
+    implementation "com.stripe:stripeterminal:1.0.17"
+    implementation 'com.stripe:stripe-android:14.5.0'
 
     //persistance
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'

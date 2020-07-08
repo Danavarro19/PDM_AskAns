@@ -44,6 +44,7 @@ class Fragment_home : Fragment() {
         userModel.resetUpdateOrCreate()
         userModel.updateEncuestas()
         userModel.resetListoParaEnviar()
+        userModel.resetLanzamientos()
         userModel.pass.observe(viewLifecycleOwner, Observer {
             if(it){
                 println("es verdadero")
@@ -51,6 +52,14 @@ class Fragment_home : Fragment() {
             }else{
                 println("no es verdadero" + it)
                 this.findNavController().navigate(R.id.frontPage)
+            }
+        })
+
+        userModel.lanzamientosObtenidos.observe(viewLifecycleOwner, Observer {
+            if(it){
+                this.findNavController().navigate(R.id.action_fragment_home_to_fragment_lanzamientos)
+            }else{
+
             }
         })
 
@@ -62,11 +71,19 @@ class Fragment_home : Fragment() {
 
             }
         })
+        binding.bnvMenu.selectedItemId = R.id.navHomeFragment
+        binding.bnvMenu.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.navEncuestaFragm -> {
+                    this.findNavController().navigate(R.id.action_fragment_home_to_fragmentSearchEncuestas)
+                true
+                }
+                R.id.navEnvioFragm ->{
+                    userModel.getLanzamientos()
+                    true
+                }
+                else -> true
 
-        binding.bnvMenu.setOnNavigationItemReselectedListener {
-
-            if(it.itemId == R.id.navEncuestaFragm){
-                this.findNavController().navigate(R.id.action_fragment_home_to_fragmentSearchEncuestas)
             }
         }
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dnavarro.askanswerviews.entity.encuesta
+import com.dnavarro.askanswerviews.entity.lanzamientos
 import com.dnavarro.askanswerviews.entity.respuestas
 import com.dnavarro.askanswerviews.repository.UserRepository
 import java.lang.Exception
@@ -15,6 +16,10 @@ class Userviewmodel: ViewModel() {
     val respuestaEnviada: LiveData<Boolean> = userRepo.respuestaEnviada
     val encuestaToResolve: LiveData<encuesta> = userRepo.encuestaToResolve
     val listoParaEnviar: LiveData<Boolean> = userRepo.listoParaResponder
+    val lanzamientocreado: LiveData<Boolean> = userRepo.lanzamientocreado
+    val lanzamientosObtenidos: LiveData<Boolean> = userRepo.lanzamientoObtenidos
+    val ListaLanzamientos: LiveData<MutableCollection<lanzamientos>> = userRepo.lanza
+    val closeSesion: LiveData<Boolean> = userRepo.sesionclosed
 
     private val _mail = MutableLiveData<String>()
     val pass: LiveData<Boolean> = userRepo.pass
@@ -24,13 +29,17 @@ class Userviewmodel: ViewModel() {
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> get() = _msg
 
+    private val _pagarlanzamientoid = MutableLiveData<String>()
+    val pagarlanzamienot: LiveData<String> get() = _pagarlanzamientoid
 
     private val _estado = MutableLiveData<String>()
     val estado: LiveData<String> get()  = _estado
 
     private val _encuestaToUpdate = MutableLiveData<encuesta>()
     val encuestaToUpate: LiveData<encuesta> get() = _encuestaToUpdate
-
+    fun cerrarSesion(){
+        userRepo.closeSession()
+    }
     fun Edit(encuesta: encuesta){
         _encuestaToUpdate.value = encuesta;
     }
@@ -50,8 +59,20 @@ class Userviewmodel: ViewModel() {
         userRepo.resetListoParaEnviar()
     }
 
+    fun resetLanzamientos(){
+        userRepo.resetLanzamientos()
+    }
+
+    fun resetLnazamientoCreado(){
+        userRepo.resetLanzamientoCreado()
+    }
+
     fun getEncuestaToResolve(id: String){
         userRepo.getEncuestaToResolve(id)
+    }
+
+    fun UpdateLanzamientoPagar(id: String){
+        _pagarlanzamientoid.value = id
     }
 
     init {
@@ -92,6 +113,18 @@ class Userviewmodel: ViewModel() {
     }
     fun updateEncuestas(){
         userRepo.getEncuestas()
+    }
+
+    fun createLanzamiento(lanz: lanzamientos){
+        userRepo.createLanzamiento(lanz)
+    }
+
+    fun deleteLanzamiento(id: String){
+        userRepo.deleteLanzamiento(id)
+    }
+
+    fun getLanzamientos(){
+        userRepo.getLanzamientos()
     }
     fun checkPassword(){
         try {

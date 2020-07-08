@@ -11,6 +11,21 @@ import retrofit2.Response
 
 class UserRepository {
 
+    private val _user = MutableLiveData<user>()
+    val usuario: LiveData<user> get() = _user
+
+    private val _sesioncerrada = MutableLiveData<Boolean>()
+    val sesionclosed: LiveData<Boolean> get() = _sesioncerrada
+
+    private val _lanzamientocreado = MutableLiveData<Boolean>()
+    val lanzamientocreado: LiveData<Boolean> get() = _lanzamientocreado
+
+    private val _lanzamientos = MutableLiveData<MutableCollection<lanzamientos>>()
+    val lanza: LiveData<MutableCollection<lanzamientos>> get() = _lanzamientos
+
+    private val _lanzamientosObtenidos = MutableLiveData<Boolean>()
+    val lanzamientoObtenidos: LiveData<Boolean> get() = _lanzamientosObtenidos
+
     private val _CreadoOActualizado = MutableLiveData<Boolean>()
     val CreadoOActualizado: LiveData<Boolean> get() = _CreadoOActualizado
 
@@ -39,6 +54,7 @@ class UserRepository {
         _pass.value = false
         _register.value = false
         _encuestas.value = mutableSetOf<encuesta>()
+
     }
 
     fun resetCreateUpdate(){
@@ -53,6 +69,14 @@ class UserRepository {
         _listoParaResponder.value = false
     }
 
+    fun resetLanzamientos(){
+        _lanzamientosObtenidos.value = false
+    }
+
+    fun resetLanzamientoCreado(){
+        _lanzamientocreado.value = false
+    }
+
     fun session(){
         val request = serviceLoginResponse.buildService(sessionInterface::class.java)
 
@@ -65,6 +89,7 @@ class UserRepository {
                     println("Result ${response.headers()}")
                     result = response.body()!!.session
                     _pass.value = result
+                    _sesioncerrada.value = false
                     println("Result $result")
                 }else{
                     println("Result ${response.headers()}")
@@ -81,18 +106,45 @@ class UserRepository {
         })
     }
 
+    fun closeSession(){
+        var result: Boolean = false
+        val request = serviceLoginResponse.buildService(loginInterface::class.java)
+        val call  = request.closeSession()
+
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.correct){
+                        _sesioncerrada.value = true
+                        _pass.value = false
+                    }
+                }else{
+
+
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+    }
+
     fun Login(mail: String, password: String){
         var result: Boolean = false
         val request = serviceLoginResponse.buildService(loginInterface::class.java)
         val call  = request.getLoginResponse(loginData(mail,password))
 
-        call.enqueue(object: Callback<loginResponse>{
-            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+        call.enqueue(object: Callback<loginResponseUser>{
+            override fun onResponse(call: Call<loginResponseUser>, response: Response<loginResponseUser>) {
                 if(response.isSuccessful){
                     println("Result ${response.headers()}")
                     result = response.body()!!.correct
                     _pass.value = result
-                    println("Result $result")
+                    _user.value =  response.body()!!.usuario
+                    _sesioncerrada.value = false
                 }else{
 
                     result = false
@@ -100,7 +152,7 @@ class UserRepository {
                 }
 
             }
-            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<loginResponseUser>, t: Throwable) {
                 println(t.message)
                 result = false
             }
@@ -141,6 +193,39 @@ class UserRepository {
         })
 
 
+
+    }
+
+    fun getLanzamientos(){
+        val request = serviceLoginResponse.buildService(lanzamientoInterface::class.java)
+        val call  = request.get()
+        var result: Boolean = false
+        call.enqueue(object: Callback<lanzamientosResponse>{
+            override fun onResponse(call: Call<lanzamientosResponse>, response: Response<lanzamientosResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.body()}")
+                    result = response.body()!!.correct
+
+                    if(result){
+                        _lanzamientos.value = response.body()!!.lanzamientos
+                        _lanzamientosObtenidos.value = true
+
+                    }
+                    println("Result $result")
+                }else{
+                    _lanzamientosObtenidos.value = false
+                    result = false
+
+                }
+
+            }
+            override fun onFailure(call: Call<lanzamientosResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+                _lanzamientosObtenidos.value = false
+            }
+
+        })
 
     }
 
@@ -240,7 +325,33 @@ class UserRepository {
         })
     }
 
+    fun createLanzamiento(lanzamient: lanzamientos){
+        var result: Boolean = false
+        val request = serviceLoginResponse.buildService(crearLanzamientoInterface::class.java)
+        val call  = request.crearOActualizar(lanzamient)
 
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.headers()}")
+                    result = response.body()!!.correct
+                    getLanzamientos()
+                    _lanzamientocreado.value = true
+                    println("Result $result")
+                }else{
+
+                    result = false
+
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
+    }
 
     fun actualizarOCrearEncuesta(encuesta: encuesta){
         var result: Boolean = false
@@ -273,6 +384,32 @@ class UserRepository {
 
     fun registerSession(){
         _pass.value = true
+    }
+
+    fun deleteLanzamiento(id: String){
+        var result: Boolean = false
+        val request = serviceLoginResponse.buildService(deleteLanzamiento::class.java)
+        val call  = request.delete(deleteRequest(id))
+        call.enqueue(object: Callback<loginResponse>{
+            override fun onResponse(call: Call<loginResponse>, response: Response<loginResponse>) {
+                if(response.isSuccessful){
+                    println("Result ${response.headers()}")
+                    result = response.body()!!.correct
+                    getLanzamientos()
+                    println("Result $result")
+                }else{
+
+                    result = false
+
+                }
+
+            }
+            override fun onFailure(call: Call<loginResponse>, t: Throwable) {
+                println(t.message)
+                result = false
+            }
+
+        })
     }
 
     fun deleteEncuesta(encuesta: encuesta){

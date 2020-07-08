@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragmentSearchEncuestas"
             app:destination="@id/fragmentSearchEncuestas" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_lanzamientos"
+            app:destination="@id/fragment_lanzamientos" />
     </fragment>
     <fragment
         android:id="@+id/crearEncuesta"
@@ -70,5 +73,34 @@
         <action
             android:id="@+id/action_fragmentSearchEncuestas_to_fragmentResponder"
             app:destination="@id/fragmentResponder" />
+        <action
+            android:id="@+id/action_fragmentSearchEncuestas_to_fragment_lanzamientos"
+            app:destination="@id/fragment_lanzamientos" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_lanzamientos"
+        android:name="com.dnavarro.askanswerviews.fragments.Fragment_lanzamientos"
+        android:label="Fragment_lanzamientos" >
+        <action
+            android:id="@+id/action_fragment_lanzamientos_to_fragment_home"
+            app:destination="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragment_lanzamientos_to_fragmentSearchEncuestas"
+            app:destination="@id/fragmentSearchEncuestas" />
+        <action
+            android:id="@+id/action_fragment_lanzamientos_to_fragment_crear_lanzamiento"
+            app:destination="@id/fragment_crear_lanzamiento" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_crear_lanzamiento"
+        android:name="com.dnavarro.askanswerviews.fragments.fragment_crear_lanzamiento"
+        android:label="fragment_crear_lanzamiento" >
+        <action
+            android:id="@+id/action_fragment_crear_lanzamiento_to_fragment_lanzamientos"
+            app:destination="@id/fragment_lanzamientos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_pagar"
+        android:name="com.dnavarro.askanswerviews.fragments.Fragment_pagar"
+        android:label="Fragment_pagar" />
 </navigation>

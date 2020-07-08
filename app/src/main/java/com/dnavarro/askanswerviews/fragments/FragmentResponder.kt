@@ -3,6 +3,7 @@ package com.dnavarro.askanswerviews.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,8 @@ class FragmentResponder : Fragment() {
             if(it){
                 this.findNavController().navigate(R.id.action_fragmentResponder_to_fragment_home)
             }else{
-                println("es un no se ha hecho")
+
+                Log.i("Observer","es un no se ha hecho")
             }
         })
 
@@ -123,10 +125,10 @@ class FragmentResponder : Fragment() {
                             }
                             opcionesRadio.addView(opcion)
                         }
+                        opcionesRadio.addView(other)
 
                         container.addView(titulo)
                         container.addView(opcionesRadio)
-                        container.addView(other)
                         container.addView(respuestae)
 
 
@@ -137,7 +139,7 @@ class FragmentResponder : Fragment() {
                             container.addView(titulo)
                             it.opciones.forEach {v ->
 
-                                var opcion = RadioButton(this.context)
+                                var opcion = CheckBox(this.context)
                                 var resp = respuesta(it.encabezado,v.titulo_opcion,"")
                                 opcion.text = v.titulo_opcion
 

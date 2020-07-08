@@ -13,6 +13,6 @@
     <item
         android:id="@+id/navEnvioFragm"
         android:icon="@drawable/ic_send_black_24dp"
-        android:title="Encuestas enviadas" />
+        android:title="Lanzamientos" />
 
 </menu>

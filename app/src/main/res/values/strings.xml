@@ -44,7 +44,7 @@
     <string name="buscarCodigoBTN">Contestar</string>
 
     <string name="MensajeNoHayEncuestas">No tienes encuestas para resolver.</string>
-
+    <string name="CrearLanzamiento">Crear lanzamiento</string>
     <string-array name="TipoPreguntas">
         <item>Respuesta abierta.</item>
         <item>Opcion Multiple.</item>

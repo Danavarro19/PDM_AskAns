@@ -23,6 +23,7 @@ import com.dnavarro.askanswerviews.entity.opcion
 import com.dnavarro.askanswerviews.entity.pregunta
 import com.dnavarro.askanswerviews.viewmodels.CrearEncuestaViewModel
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
+import org.w3c.dom.Text
 
 
 /**
@@ -190,17 +191,17 @@ class crearEncuesta : Fragment() {
             it.opciones.forEach {op ->
                 var contenedorOpcion = LinearLayout(this.context)
                 contenedorOpcion.orientation = LinearLayout.HORIZONTAL
-                var opcion = EditText(this.context)
+                var opcion = TextView(this.context)
                 opcion.setText(op.titulo_opcion)
-                opcion.addTextChangedListener(object: TextWatcher{
-                    override fun afterTextChanged(p0: Editable) {
-                        op.titulo_opcion = p0.toString()
-                    }
-                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                })
+//                opcion.addTextChangedListener(object: TextWatcher{
+//                    override fun afterTextChanged(p0: Editable) {
+//                        op.titulo_opcion = p0.toString()
+//                    }
+//                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                })
 
 
                 var btnDeleteOpcion = Button(this.context)
@@ -227,20 +228,20 @@ class crearEncuesta : Fragment() {
                 it.opciones.add(addingOpcion)
                 var contenedorOpcion = LinearLayout(this.context)
                 contenedorOpcion.orientation = LinearLayout.HORIZONTAL
-                var opcion = EditText(this.context)
+                var opcion = TextView(this.context)
                 opcion.setText(listaOpciones.text)
 
-                opcion.addTextChangedListener(object: TextWatcher{
-                    override fun afterTextChanged(p0: Editable) {
-                        it.opciones.elementAt(it.opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
-                        addingOpcion.titulo_opcion = p0.toString()
-
-                    }
-                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                })
+//                opcion.addTextChangedListener(object: TextWatcher{
+//                    override fun afterTextChanged(p0: Editable) {
+//                        it.opciones.elementAt(it.opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
+//                        addingOpcion.titulo_opcion = p0.toString()
+//
+//                    }
+//                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                })
 
                 listaOpciones.setText("")
                 var btnDeleteOpcion = Button(this.context)
@@ -297,7 +298,7 @@ class crearEncuesta : Fragment() {
             encabezado.addTextChangedListener(object: TextWatcher{
                 override fun afterTextChanged(p0: Editable) {
                     println("element at:" + crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
-                    crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).encabezado = p0.toString()
+//                    crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).encabezado = p0.toString()
                     newPregunta.encabezado = p0.toString()
                  }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -327,7 +328,7 @@ class crearEncuesta : Fragment() {
             pregunta_abierta.setTextSize(3, 7.5F)
             pregunta_abierta.isChecked = newPregunta.pregunta_abierta
             pregunta_abierta.setOnClickListener { view ->
-                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).pregunta_abierta = pregunta_abierta.isChecked
+//                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).pregunta_abierta = pregunta_abierta.isChecked
 
                 newPregunta.pregunta_abierta = pregunta_abierta.isChecked
 
@@ -339,7 +340,7 @@ class crearEncuesta : Fragment() {
             multi_respuesta.setTextSize(3, 7.5F)
             multi_respuesta.isChecked = newPregunta.multi_respuesta
             multi_respuesta.setOnClickListener { view ->
-                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).multi_respuesta = multi_respuesta.isChecked
+//                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).multi_respuesta = multi_respuesta.isChecked
 
                 newPregunta.multi_respuesta = multi_respuesta.isChecked
             }
@@ -350,7 +351,7 @@ class crearEncuesta : Fragment() {
             requiere.setTextSize(3, 7.5F)
             requiere.isChecked = newPregunta.requiere
             requiere.setOnClickListener { view ->
-                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).requiere = requiere.isChecked
+//                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).requiere = requiere.isChecked
 
                 newPregunta.requiere = requiere.isChecked
             }
@@ -379,31 +380,31 @@ class crearEncuesta : Fragment() {
 
             btn_addOption.setOnClickListener {  op ->
                 var addingOpcion = opcion(listaOpciones.text.toString())
-                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).opciones.add(addingOpcion)
+//                crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta)).opciones.add(addingOpcion)
 
                 newPregunta.opciones.add(addingOpcion)
 
                 var contenedorOpcion = LinearLayout(this.context)
                 contenedorOpcion.orientation = LinearLayout.HORIZONTAL
-                var opcion = EditText(this.context)
+                var opcion = TextView(this.context)
                 opcion.setText(listaOpciones.text)
 
-                opcion.addTextChangedListener(object: TextWatcher{
-                    override fun afterTextChanged(p0: Editable) {
-                        crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
-                            .opciones.elementAt(crearEncuesta.encuesta.value!!.preguntas
-                                .elementAt(crearEncuesta.encuesta.value!!.preguntas
-                                    .indexOf(newPregunta)).opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
-
-                        newPregunta.opciones.elementAt(newPregunta.opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
-                        addingOpcion.titulo_opcion = p0.toString()
-
-                    }
-                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    }
-                })
+//                opcion.addTextChangedListener(object: TextWatcher{
+//                    override fun afterTextChanged(p0: Editable) {
+//                        crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
+//                            .opciones.elementAt(crearEncuesta.encuesta.value!!.preguntas
+//                                .elementAt(crearEncuesta.encuesta.value!!.preguntas
+//                                    .indexOf(newPregunta)).opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
+//
+//                        newPregunta.opciones.elementAt(newPregunta.opciones.indexOf(addingOpcion)).titulo_opcion = p0.toString()
+//                        addingOpcion.titulo_opcion = p0.toString()
+//
+//                    }
+//                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    }
+//                })
 
                 listaOpciones.setText("")
                 var btnDeleteOpcion = Button(this.context)
@@ -415,8 +416,8 @@ class crearEncuesta : Fragment() {
                 btnDeleteOpcion.setTextColor(Color.RED);
 
                 btnDeleteOpcion.setOnClickListener { view ->
-                    crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
-                        .opciones.remove(addingOpcion)
+//                    crearEncuesta.encuesta.value!!.preguntas.elementAt(crearEncuesta.encuesta.value!!.preguntas.indexOf(newPregunta))
+//                        .opciones.remove(addingOpcion)
                     newPregunta.opciones.remove(addingOpcion)
                     contenedorOpciones.removeView(contenedorOpcion)
                 }

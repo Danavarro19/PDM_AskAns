@@ -31,10 +31,11 @@ import javax.net.ssl.*
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val IP: String = "192.168.1.12"
+    private const val IP: String = "192.168.1.6"
     private const val URL: String = "https://"+ IP + ":3001/movil/"
-    private lateinit var context: Application
+    lateinit var context: Application
 
+    const val URI = "https://"+ IP + ":3001/"
 
     fun init(app: Application){
         this.context = app
@@ -118,7 +119,7 @@ object serviceLoginResponse {
 
     private lateinit var intercep: HttpLoggingInterceptor
 
-    private lateinit var client: OkHttpClient
+    lateinit var client: OkHttpClient
 
 
 
