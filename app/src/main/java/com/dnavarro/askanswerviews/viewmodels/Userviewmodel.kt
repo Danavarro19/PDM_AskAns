@@ -2,10 +2,12 @@ package com.dnavarro.askanswerviews.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.dnavarro.askanswerviews.entity.encuesta
 import com.dnavarro.askanswerviews.entity.lanzamientos
 import com.dnavarro.askanswerviews.entity.respuestas
+import com.dnavarro.askanswerviews.entity.user
 import com.dnavarro.askanswerviews.repository.UserRepository
 import java.lang.Exception
 class Userviewmodel: ViewModel() {
@@ -20,6 +22,17 @@ class Userviewmodel: ViewModel() {
     val lanzamientosObtenidos: LiveData<Boolean> = userRepo.lanzamientoObtenidos
     val ListaLanzamientos: LiveData<MutableCollection<lanzamientos>> = userRepo.lanza
     val closeSesion: LiveData<Boolean> = userRepo.sesionclosed
+    val usuario: LiveData<user> = userRepo.usuario
+    val saldoFix: LiveData<String> = Transformations.map(usuario) { v->
+         "$ " + v.saldo
+    }
+    val nombreFix: LiveData<String> = Transformations.map(usuario) { v->
+        v.nombre + " " + v.apellido
+    }
+
+
+
+
 
     private val _mail = MutableLiveData<String>()
     val pass: LiveData<Boolean> = userRepo.pass

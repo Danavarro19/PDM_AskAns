@@ -49,6 +49,7 @@ class UserRepository {
     val register: LiveData<Boolean> get() = _register
     init { //implementar cookie session
 
+        _user.value = user("","","",0,"",0,"","","","", mutableListOf(),0)
         session()
         _listoParaResponder.value = false
         _pass.value = false
@@ -86,10 +87,11 @@ class UserRepository {
         call.enqueue(object: Callback<sessionResponse>{
             override fun onResponse(call: Call<sessionResponse>, response: Response<sessionResponse>) {
                 if(response.isSuccessful){
-                    println("Result ${response.headers()}")
+                    println("Result ${response.body()}")
                     result = response.body()!!.session
                     _pass.value = result
                     _sesioncerrada.value = false
+                    _user.value = response.body()!!.usuario
                     println("Result $result")
                 }else{
                     println("Result ${response.headers()}")
@@ -175,6 +177,7 @@ class UserRepository {
                     result = response.body()!!.correct
                     _register.value = result
                     if(result){
+                        _user.value = response.body()!!.usuario
                         _pass.value = true
                     }
                     println("Result $result")

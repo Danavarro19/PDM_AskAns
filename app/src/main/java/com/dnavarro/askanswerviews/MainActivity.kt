@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -17,6 +18,7 @@ import com.dnavarro.askanswerviews.databinding.ActivityMainBinding
 import com.dnavarro.askanswerviews.retrofit.serviceLoginResponse
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.fragment_register.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         serviceLoginResponse.init(this.application)
         val model: Userviewmodel by viewModels()
-
+        model.getLanzamientos()
 
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
@@ -75,9 +77,20 @@ class MainActivity : AppCompatActivity() {
 //            true
 //
 //        }
+        model.saldoFix.observe(this, Observer {
+//            if(it != null){
+//
+//            }
+            binding.navView.menu.findItem(R.id.saldo).title = "Saldo $it"
+        })
         binding.navView.setNavigationItemSelectedListener {
             println("ItemMain Selected: "+it.itemId)
             when(it.itemId){
+                R.id.cuenta ->{
+                    findNavController(R.id.myNavHostFragment).navigate(R.id.fragmentPerfil)
+
+                    true
+                }
                 R.id.cerrarSesion -> {
                     model.cerrarSesion()
                     true

@@ -1,3 +1,3 @@
 package com.dnavarro.askanswerviews.entity
 
-data class sessionResponse (var session: Boolean)
+data class sessionResponse (var session: Boolean,var usuario: user)

@@ -103,4 +103,8 @@
         android:id="@+id/fragment_pagar"
         android:name="com.dnavarro.askanswerviews.fragments.Fragment_pagar"
         android:label="Fragment_pagar" />
+    <fragment
+        android:id="@+id/fragmentPerfil"
+        android:name="com.dnavarro.askanswerviews.fragments.FragmentPerfil"
+        android:label="FragmentPerfil" />
 </navigation>
