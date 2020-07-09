@@ -31,11 +31,11 @@ import javax.net.ssl.*
 
 object serviceLoginResponse {
 //    USE YOUR URL CHANGE IT
-    private const val IP: String = "192.168.1.6"
-    private const val URL: String = "https://"+ IP + ":3001/movil/"
+    private const val IP: String = "analyticsmg.herokuapp.com"
+    private const val URL: String = "https://analyticsmg.herokuapp.com/movil/"
     lateinit var context: Application
 
-    const val URI = "https://"+ IP + ":3001/"
+    const val URI = "https://analyticsmg.herokuapp.com"
 
     fun init(app: Application){
         this.context = app
@@ -77,7 +77,7 @@ object serviceLoginResponse {
 
         val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
         println("directorio: " + File("cert.pem").getAbsolutePath())
-        val caInput: InputStream = BufferedInputStream(context.assets.open("cert.pem"))
+        val caInput: InputStream = BufferedInputStream(context.assets.open("cert.cer"))
         val ca: X509Certificate = caInput.use {
             cf.generateCertificate(it) as X509Certificate
         }
