@@ -66,9 +66,16 @@ class fragment_crear_lanzamiento: Fragment() {
         }
 
         binding.button4.setOnClickListener {
-            newLa.encuesta = listaId.get(binding.listaEncuestaSpiner.selectedItemPosition)
-            newLa.cantidad_usuario =  binding.editTextNumber.text.toString().toInt()
-            userModel.createLanzamiento(newLa)
+
+           try {
+               newLa.encuesta = listaId.get(binding.listaEncuestaSpiner.selectedItemPosition ?: 0)
+               newLa.cantidad_usuario =  binding.editTextNumber.text.toString().toInt()
+               userModel.createLanzamiento(newLa)
+           }  catch (e: Exception){
+                println(e.message)
+           }
+
+
         }
 
         return binding.root
