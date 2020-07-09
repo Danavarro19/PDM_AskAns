@@ -26,6 +26,7 @@ class fragment_crear_lanzamiento: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = DataBindingUtil.inflate<FragmentCrearLanzamientosBinding>(inflater,
             R.layout.fragment_crear_lanzamientos, container, false)
         binding.lifecycleOwner = this

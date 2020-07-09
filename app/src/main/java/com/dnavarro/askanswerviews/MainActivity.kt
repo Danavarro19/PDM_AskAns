@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val navController = this.findNavController(R.id.myNavHostFragment)
+
         navController.addOnDestinationChangedListener{ _,destination,_ ->
             println(destination.id)
             when (destination.id){
@@ -71,12 +72,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+
 //        binding.navView.setOnDragListener { v, event ->
 //            println(event)
 //            model.resetLanzamientos()
 //            true
 //
 //        }
+
         model.saldoFix.observe(this, Observer {
 //            if(it != null){
 //

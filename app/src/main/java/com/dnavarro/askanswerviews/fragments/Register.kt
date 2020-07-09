@@ -58,6 +58,7 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
+
         registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
                 println("Se registro")

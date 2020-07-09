@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentHomeBinding
 import com.dnavarro.askanswerviews.databinding.FragmentPerfilBinding

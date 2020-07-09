@@ -38,6 +38,8 @@ class Fragment_home : Fragment() {
     ): View? {
         //this.activity?.setTitle(R.string.app_name)-->cambiar nombre de fragmento
 
+
+
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
             R.layout.fragment_home, container, false)
         binding.lifecycleOwner = this

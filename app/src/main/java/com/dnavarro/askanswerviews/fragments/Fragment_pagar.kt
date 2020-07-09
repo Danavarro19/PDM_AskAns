@@ -49,6 +49,7 @@ class Fragment_pagar : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
          binding = DataBindingUtil.inflate<FragmentPagosBinding>(
             inflater,
             R.layout.fragment_pagos, container, false

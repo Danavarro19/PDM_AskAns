@@ -22,6 +22,7 @@ class fragmentSearchEncuestas: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = DataBindingUtil.inflate<FragmentSearchEncuestaBinding>(inflater,
             R.layout.fragment_search_encuesta,container,false)
         binding.lifecycleOwner = this

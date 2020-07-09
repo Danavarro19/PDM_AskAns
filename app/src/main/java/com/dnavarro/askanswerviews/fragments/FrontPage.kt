@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentFrontPageBinding
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
@@ -36,6 +37,11 @@ class FrontPage : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentFrontPageBinding>(
             inflater,
             R.layout.fragment_front_page,container,false )
+
+
+
+
+
 
 
         binding.userModel = userModel
