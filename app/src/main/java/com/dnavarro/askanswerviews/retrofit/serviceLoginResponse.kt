@@ -35,7 +35,7 @@ object serviceLoginResponse {
     private const val URL: String = "https://analyticsmg.herokuapp.com/movil/"
     lateinit var context: Application
 
-    const val URI = "https://analyticsmg.herokuapp.com"
+    const val URI = "https://analyticsmg.herokuapp.com/"
 
     fun init(app: Application){
         this.context = app
