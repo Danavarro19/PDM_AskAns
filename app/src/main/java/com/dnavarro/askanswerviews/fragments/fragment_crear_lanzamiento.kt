@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,10 +32,22 @@ class fragment_crear_lanzamiento: Fragment() {
             R.layout.fragment_crear_lanzamientos, container, false)
         binding.lifecycleOwner = this
         userModel.resetLnazamientoCreado()
+
+        val text = "El lanzamiento es para menos de 250 personas, o la encuesta no se ha elegido."
+        val duration = Toast.LENGTH_LONG
+        val toastError = Toast.makeText(this.activity!!.applicationContext, text, duration)
+        var first = true
         userModel.lanzamientocreado.observe(viewLifecycleOwner, Observer {
             if(it){
                 this.findNavController().navigate(R.id.action_fragment_crear_lanzamiento_to_fragment_lanzamientos)
             }else{
+                if(!first){
+                    println("entra al perimero")
+                    first = false
+                }else{
+                    println("entra al segundio")
+                    toastError.show()
+                }
 
             }
         })

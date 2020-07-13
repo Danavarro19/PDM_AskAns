@@ -342,7 +342,7 @@ class UserRepository {
                     _lanzamientocreado.value = true
                     println("Result $result")
                 }else{
-
+                    _lanzamientocreado.value = false
                     result = false
 
                 }
@@ -351,6 +351,7 @@ class UserRepository {
             override fun onFailure(call: Call<loginResponse>, t: Throwable) {
                 println(t.message)
                 result = false
+                _lanzamientocreado.value = false
             }
 
         })

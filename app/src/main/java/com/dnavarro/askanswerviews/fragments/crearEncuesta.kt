@@ -73,11 +73,17 @@ class crearEncuesta : Fragment() {
         }
 
         userModel.resetUpdateOrCreate()
+        val text = "Ocurrió un error al crear la encuesta. Verifique que todos los campos esten llenos."
+        val duration = Toast.LENGTH_LONG
+
+        val toastError = Toast.makeText(this.activity!!.applicationContext, text, duration)
         userModel.UpdateOrCreated.observe(viewLifecycleOwner, Observer {
             if(it){
+
                 this.findNavController().navigate(R.id.action_crearEncuesta_to_fragment_home)
 
             }else{
+                toastError.show()
                 println("Ocurrio un Error")
             }
         })
