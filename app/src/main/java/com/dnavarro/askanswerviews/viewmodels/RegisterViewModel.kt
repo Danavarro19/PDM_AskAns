@@ -52,7 +52,7 @@ class RegisterViewModel: ViewModel() {
     val peso: LiveData<Float> get() = _peso
 
     init {
-
+        _country.value = "El Salvador"
         _name.value = ""
         _altura.value = 0f
         _lastname.value = ""

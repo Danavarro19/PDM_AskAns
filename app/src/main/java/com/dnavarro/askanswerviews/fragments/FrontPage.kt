@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
@@ -40,7 +41,9 @@ class FrontPage : Fragment() {
 
 
 
-
+        val text = "El usuario o la contraseña son incorrectos."
+        val duration = Toast.LENGTH_LONG
+        val toastError = Toast.makeText(this.activity!!.applicationContext, text, duration)
 
 
 
@@ -53,6 +56,7 @@ class FrontPage : Fragment() {
 //                definir navigation con logueo correcto
             }else{
                 userModel.changeMessage("Datos incorrectos")
+                toastError.show()
                 println("no se pudo loguear")
             }
         })

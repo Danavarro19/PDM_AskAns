@@ -13,10 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -58,13 +55,19 @@ class Register : Fragment() {
             inflater,
             R.layout.fragment_register, container, false
         )
+        val text = "Ocurrió un error al registrarse. Verifique todos los campos."
+        val duration = Toast.LENGTH_LONG
+
+        val toastError = Toast.makeText(this.activity!!.applicationContext, text, duration)
 
         registerModel.registerc.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
+
                 println("Se registro")
                 userModel.register()
                 this.findNavController().navigate(R.id.fragment_home)
             }else{
+                toastError.show()
                 println("Hubo un error en el registro")
 
                 /// manejar el error del registro antes con validaciones
