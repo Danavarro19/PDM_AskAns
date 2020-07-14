@@ -102,7 +102,7 @@ class Fragment_home : Fragment() {
                     var container = LinearLayout(this.context)
                     container.orientation = LinearLayout.VERTICAL
                     newCarEncuesta.isClickable = true
-                    newCarEncuesta.setContentPadding(0,0,0,15)
+                    newCarEncuesta.setContentPadding(5,0,5,15)
                     //newCarEncuesta.setLayoutParams(RelativeLayout.LayoutParams(400, 250))
                     newCarEncuesta.getBackground().setAlpha(51); //-->transparente cardview
                     newCarEncuesta.setOnClickListener {
@@ -148,7 +148,6 @@ class Fragment_home : Fragment() {
                     var btn_descarga = Button(this.context)
                     //btn_descarga.setText("Descarga")
                     btn_descarga.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_save_alt_24, 0, 0, 0);
-                    btn_descarga.setGravity(Gravity.END);
                     btn_descarga.setTextColor(Color.BLACK);
                     btn_descarga.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 

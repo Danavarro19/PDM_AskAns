@@ -1,5 +1,6 @@
 package com.dnavarro.askanswerviews.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,8 @@ class Fragment_lanzamientos: Fragment() {
             binding.listaLanzamientos.removeAllViews()
             it.forEach {lan ->
                 var cardContainer = CardView(this.context!!)
+                cardContainer.getBackground().setAlpha(51)
+                cardContainer.setContentPadding(10,15,10,15)
 
                 var VerticalContainer = LinearLayout(this.context)
                 VerticalContainer.orientation = LinearLayout.VERTICAL
@@ -73,7 +76,9 @@ class Fragment_lanzamientos: Fragment() {
                     }
                 }
                 if(nombreEncuesta.isNotEmpty()){
-                    titulo.text = "Encuesta:" +nombreEncuesta
+                    titulo.text = "Encuesta: " +nombreEncuesta
+                    titulo.setTextColor(Color.rgb(0,0,0))
+                    titulo.setTextSize(3, 7.0F)
                 }
 
                 var containerChips = ChipGroup(this.context)
@@ -86,6 +91,8 @@ class Fragment_lanzamientos: Fragment() {
 
                 var cantidad_users = TextView(this.context)
                 cantidad_users.text = "Alcance: " + lan.cantidad_usuario + " usuarios"
+                cantidad_users.setTextColor(Color.rgb(0,0,0))
+                cantidad_users.setTextSize(3, 7.0F)
                 VerticalContainer.addView(cantidad_users)
 
                 var statusPago = TextView(this.context)
@@ -93,8 +100,12 @@ class Fragment_lanzamientos: Fragment() {
 
                 if(lan.pagada){
                     statusPago.text = "Status: Pagada"
+                    statusPago.setTextColor(Color.rgb(0,0,0))
+                    statusPago.setTextSize(3, 7.0F)
                     var cantidad_respuesta = TextView(this.context)
                     cantidad_respuesta.text = "" + lan.cantidad_respuesta + "/" + lan.cantidad_usuario + " respuestas"
+                    cantidad_respuesta.setTextColor(Color.rgb(0,0,0))
+                    cantidad_respuesta.setTextSize(3, 7.0F)
                     VerticalContainer.addView(cantidad_respuesta)
                     var btndescargar = Button(this.context)
                     btndescargar.text = "Descargar Factura"
@@ -103,8 +114,12 @@ class Fragment_lanzamientos: Fragment() {
                     }
                 }else{
                     statusPago.text = "Status: No Pagada"
+                    statusPago.setTextColor(Color.rgb(0,0,0))
+                    statusPago.setTextSize(3, 7.0F)
                     var costo = TextView(this.context)
                     costo.text = "Costo: $" + lan.costo.toString()
+                    costo.setTextColor(Color.rgb(0,0,0))
+                    costo.setTextSize(3, 7.0F)
                     VerticalContainer.addView(costo)
 
                     var btnborrar = Button(this.context)

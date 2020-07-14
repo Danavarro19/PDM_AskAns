@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/torn_pape"
     tools:context=".Fragment_lanzamientos">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,9 @@
             android:text="@string/CrearLanzamiento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:backgroundTint="#2699FB"
+            android:fontFamily="@font/palanquin_dark_medium"/>
 
         <ScrollView
             android:id="@+id/scrollView5"

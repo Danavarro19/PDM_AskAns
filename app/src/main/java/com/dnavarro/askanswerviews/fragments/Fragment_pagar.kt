@@ -135,6 +135,7 @@ class Fragment_pagar : Fragment() {
             } as okhttp3.Callback)
 
         val payButton: Button = binding!!.layoutinclude.payButton
+        payButton.setText("Pagar lanzamiento")
         payButton.setOnClickListener {
             pay()
         }

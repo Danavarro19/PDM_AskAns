@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/torn_pape"
     tools:context=".Fragment_pagar">
 
     <androidx.constraintlayout.widget.ConstraintLayout

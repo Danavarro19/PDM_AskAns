@@ -3,12 +3,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo1"
     tools:context=".fragment_crear_lanzamiento">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
+        android:background="@drawable/torn_pape"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -108,7 +108,9 @@
 
             android:text="¡Crear lanzamiento!"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:backgroundTint="#2699FB"
+            android:fontFamily="@font/palanquin_dark_medium"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,5 +12,6 @@
 
     <color name="colorBorderImage">#ECB1B1</color>
     <color name="colorBlack">#000000 </color>
+    <color name="fondoLogo">#C6C1E4</color>
 
 </resources>

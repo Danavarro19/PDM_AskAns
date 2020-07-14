@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/torn_pape"
     tools:context=".fragmentSearchEncuestas">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,31 +17,36 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="@string/buscarCodigoBTN"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.848"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:backgroundTint="#2699FB"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
+            android:fontFamily="@font/palanquin_dark_medium"/>
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/buscarCodigo"
+            android:fontFamily="@font/palanquin_dark_medium"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/bnvMenuS"
 
@@ -62,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_vertical"
+                    android:fontFamily="@font/palanquin_dark_medium"
                     android:text="@string/MensajeNoHayEncuestas" />
             </LinearLayout>
         </ScrollView>

@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_LOCATION = 1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
+
         super.onCreate(savedInstanceState)
 
         if (ContextCompat.checkSelfPermission(this,
