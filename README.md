@@ -1,6 +1,6 @@
 # Ask&Answer
 
-Aplicación móvil para crear encuestas.
+Aplicación móvil para administrar encuestas.
 
 ## Getting Started
 
