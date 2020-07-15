@@ -4,6 +4,7 @@ import android.R.attr.button
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import com.dnavarro.askanswerviews.R
 import com.dnavarro.askanswerviews.databinding.FragmentHomeBinding
 import com.dnavarro.askanswerviews.entity.encuesta
+import com.dnavarro.askanswerviews.retrofit.serviceLoginResponse
 import com.dnavarro.askanswerviews.viewmodels.Userviewmodel
 
 
@@ -146,6 +148,11 @@ class Fragment_home : Fragment() {
                     btn_editar.setLayoutParams(LinearLayout.LayoutParams(75, 75))
 
                     var btn_descarga = Button(this.context)
+                    btn_descarga.setOnClickListener {
+                        val openURL = Intent(android.content.Intent.ACTION_VIEW)
+                        openURL.data = Uri.parse(serviceLoginResponse.URI + "donwload/" + encu._id )
+                        startActivity(openURL)
+                    }
                     //btn_descarga.setText("Descarga")
                     btn_descarga.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_save_alt_24, 0, 0, 0);
                     btn_descarga.setTextColor(Color.BLACK);
