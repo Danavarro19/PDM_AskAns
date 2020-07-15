@@ -8,7 +8,6 @@ La aplicación fue diseñada para crear toda la base de datos dinámicamente, as
 El sistema funciona en Windows, debido a que usa lectura de archivos del sistema par crear las tablas del modelo transaccional en Postgress, no estamos seguros de su funcionamiento 
 en Linux o Mac.
 
-Link de la api: https://github.com/GerryMG2/appMovilesApi
 
 ### Prerequisites
 
@@ -29,11 +28,16 @@ MONGO_URL= (URI DE MONGO, procurar que la contraseña de Mongo, si es local o en
 PORT= (puerto que ocupará la app)
 
 DB_POSTGRES_DEVELOPMENT= (Esta variable debe de ir en true la primera vez que se corre todo el server, luego se tiene que reiniciar el server con la variable en false, 
-esperar a que ejecute absolutamente todas las operaciones, el sistema funciona en Windows, no estamos seguros que funcione en Mac o Linux. 
+esperar a que ejecute absolutamente todas las operaciones, el sistema funciona en Windows, no estamos seguros que funcione en Mac o Linux) 
 
 NODE_TLS_REJECT_UNAUTHORIZED=0  (esto es necesario por un error en la fase de instalación, no se ha probado con quitarlo, así que por motivos de desarrollo, dejarla así como aparece
 en este ejemplo, o sea, dejarla habilitada) 
 
+Para llenar ambas variables (STRIPE_PUBLISHABLE_KEY y STRIPE_SECRET_KEY), es necesario crear o tener una cuenta en Stripe (se puede acceder a la página oficial de Stripe en siguiente link https://stripe.com/docs) y guardarlas según la documentación que la misma página ofrece.
+
+STRIPE_PUBLISHABLE_KEY=
+
+STRIPE_SECRET_KEY=
 
 - Si el server se reinicia y no se le cambia la variable de desarrollo de Postgress a false, este eliminará y volverá a crear todas las tablas sin importar el contenido de estas.
 - Una vez creadas las tablas, se tiene que crear un usuario y con su respectiva contraseña en la tabla "adminusers"
@@ -78,9 +82,9 @@ Una vez ejecutado el comando "npm install", procedemos a ejecutar el siguiente c
 Una vez hechos los pasos anteriores, hay que ir al proyecto de la aplicación, aquí el documento que nos interesa tiene como nombre
 "serviceLoginResponse.kt", está dentro de la carpeta "retrofit".
 
-En este documento, hay que cambiar dos cosas, la primera es la parte de URL: String = "http://192.168.1.15:3001/movil/"  y la otra
-return hostname == "192.168.1.15", esta se encuentra en override fun verify.
-(PARTE A CAMBIAR EN AMBOS CASOS 192.168.1.15) cambiar por tu ip de computadora o laptop.
+En este documento hay tres variables que bien podemos dejar como están o podemos cambiarlas, la primera es private const val IP: String = "analyticsmg.herokuapp.com", private const val URL: String = "https://analyticsmg.herokuapp.com/movil/" y const val URI = "https://analyticsmg.herokuapp.com/"
+
+Pero si se opta por usar la aplicación y la api de manera local, entonces la primera variable se tiene que cambiar por la ip de nuestra computadora o laptop, la segunda por "https://localhost:3001/movil/" y la tercera por "https://"+ IP + ":3001/", de igual manera se tiene que cambiar un apartado del mismo archivo, el cual es val caInput: InputStream = BufferedInputStream(context.assets.open("cert.cer")), cambiaremos cert.cer a cert.pem
 
 En caso de no ocupar emulador de Android Studio, si no que un teléfono, asegurarse que estos estén conectados a la misma red Wi-fi. 
 (como la computadora y el teléfono).
@@ -102,5 +106,5 @@ Ahora, cuando corres la aplicación móvil, puedes loguearte o bien crear un nue
 
 ## Versioning
 
-V 0.1.0
+V 1.0.0
 
