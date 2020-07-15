@@ -13,7 +13,7 @@ en Linux o Mac.
 
 Para asegurar el buen funcionamiento de la api, seguir los siguientes pasos:
 
-(Esto de debe de aplicar al documento .envExample)
+(Esto de debe de aplicar al documento .envExample) y luego cambiar a .env
 
 APP=app (Nombre de la app, esto no se debe de cambiar, dejarlo como esta)
 
